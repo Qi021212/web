@@ -13,15 +13,6 @@
 <html>
 <head>
   <title>商品列表</title>
-  <script>
-    function showAlert(itemName) {
-      if (confirm(itemName + " 已添加至购物车！\n继续选购商品吗？")) {
-        window.location.href = "items";
-      } else {
-        window.location.href = "cart"; // 假设这是购物车的 URL
-      }
-    }
-  </script>
 </head>
 <body>
 <h1>商品列表</h1>
@@ -41,8 +32,9 @@
       <td>${item.name}</td>
       <td>${item.price}</td>
       <td>
-        <form action="cart" method="post" onsubmit="showAlert('${item.name}');">
+        <form action="items" method="post">
           <input type="hidden" name="itemId" value="${item.id}"/>
+          <input type="hidden" name="price" value="${item.price}"/>
           <input type="number" name="quantity" value="1" min="1"/>
           <input type="submit" value="添加到购物车"/>
         </form>
@@ -52,6 +44,7 @@
 </table>
 </body>
 </html>
+
 
 
 

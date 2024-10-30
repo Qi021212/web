@@ -4,14 +4,23 @@ public class Cart {
     private int id;
     private int userId;
     private int itemId;
+    private String name;
     private int quantity;
-    private int amount;
+    private double amount;
     private double price;
 
     public Cart() {}
 
-    public Cart(int id, int userId, int itemId, int quantity, int amount, double price) {
+    public Cart(int id, int userId, int itemId, int quantity, double amount, double price) {
         this.id = id;
+        this.userId = userId;
+        this.itemId = itemId;
+        this.quantity = quantity;
+        this.amount = amount;
+        this.price = price;
+    }
+
+    public Cart(int userId, int itemId, int quantity, double amount, double price) {
         this.userId = userId;
         this.itemId = itemId;
         this.quantity = quantity;
@@ -43,6 +52,14 @@ public class Cart {
         this.itemId = itemId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -51,11 +68,11 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

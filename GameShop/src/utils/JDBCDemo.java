@@ -14,12 +14,13 @@ public class JDBCDemo {
         //insertSampleItems(); // 调用插入商品的方法
         displayItems(); // 调用显示商品的方法
 
-        ItemDAO itemDAO = new ItemDAO();
-        List<Item> itemList = ItemDAO.getAllItems();
-        System.out.println(itemList);
-        for(Item item : itemList) { //打印出换行结果
-            System.out.println(item);
-        }
+//        ItemDAO itemDAO = new ItemDAO();
+//        List<Item> itemList = ItemDAO.getAllItems();
+//        System.out.println(itemList);
+//        for(Item item : itemList) { //打印出换行结果
+//            System.out.println(item);
+//        }
+
 //        User user = new User("yyy","111","yyy@csu.cn",20,false);
 //        UserDao userDao = new UserDao();
 //        boolean flag = userDao.insertUser(user);

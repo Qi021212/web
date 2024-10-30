@@ -22,5 +22,14 @@
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>OrderSubmitServlet</servlet-name>
+        <servlet-class>servlet.OrderSubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderSubmitServlet</servlet-name>
+        <url-pattern>/order_submit</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

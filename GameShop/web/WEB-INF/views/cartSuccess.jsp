@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加成功</title>
+    <title>添加到购物车成功</title>
 </head>
 <body>
 <h1>${message}</h1>
-<p>添加数量: ${quantity}</p>
-<p>总金额: ${totalPrice}</p>
-<a href="itemList.jsp">继续选购商品</a>
-<a href="cart.jsp">查看购物车</a>
+<a href="items">继续浏览商品</a>
+<a href="cart">查看购物车</a>
 </body>
 </html>
+
+
 
