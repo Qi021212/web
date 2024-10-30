@@ -1,0 +1,19 @@
+body {
+    color: #ffffff;
+    background-color: #171d25;
+    text-align: center;
+    padding: 150px;
+}
+.button{
+    background-color: #ffffff;
+    color: #171d25;
+    border-style:inset;
+    border-radius: 10px;
+    height: 50px;
+    width: 180px;
+    font-size: 15px;
+}
+.button:hover{
+    background-color: lightsteelblue;
+    color: #ffffff;
+}
