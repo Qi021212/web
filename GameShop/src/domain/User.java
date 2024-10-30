@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 public class User {
     private int id;
