@@ -1,0 +1,82 @@
+body{
+    background-color: #1b2838;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/*top*/
+#logo{
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+ul.header{
+    background-color: #171d25;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+li.header{
+    display: inline;
+    float: left;
+    padding-top: 20px;
+}
+li.header a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+}
+li.header a:hover{
+    color: #0099ff;
+}
+
+/*main*/
+/*轮播图片区*/
+.slide{
+    position: relative;
+    height: 300px;
+    width: 500px;
+    margin:100px auto;
+}
+.slide ul{
+    list-style-type: none;
+}
+.list li{
+    position: absolute;
+    height: 300px;
+    width: 500px;
+    transition: 2s;
+    opacity: 0;
+    cursor: pointer;
+}
+/*分页区*/
+.ulNum{
+    position: relative;
+    margin-top: 250px;
+    margin-right: 110px;
+    right: 0;
+    bottom: 5px;
+    float: right;
+    display: inline-block;
+}
+.num{
+    color: white;
+    padding: 5px 10px;
+    list-style: none;
+    border: 1px solid #ffffff;
+    float: left;
+    background-color: #495360;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.num:hover{
+    background-color: #767e88;
+}
