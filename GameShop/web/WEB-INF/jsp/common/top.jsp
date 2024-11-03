@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div>
+<div class="header">
     <ul class="header">
         <li><a href="mainForm"><img src="images/logo.png" id="logo" alt="logo"></a></li>
         <li class="header"><a href="mainForm">商店</a></li>

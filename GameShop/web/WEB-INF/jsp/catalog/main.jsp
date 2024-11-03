@@ -1,4 +1,6 @@
 <%@ include file="../common/top.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%--轮播图--%>
 <div class="slide">
     <ul class="list">
@@ -7,7 +9,7 @@
         <li class="item"><a href=""><img src="images/003.png" alt="纸嫁衣5" id="003"></a></li>
         <li class="item"><a href=""><img src="images/004.png" alt="黑神话·悟空" id="004"></a></li>
         <li class="item"><a href=""><img src="images/005.png" alt="LIAR'S BAR" id="005"></a></li>
-        <li class="item"><a href=""><img src="images/006.png" alt="卡通农场" id="006"></a></li>
+        <li class="item"><a href=""><img src="images/006.png" alt="Overcooked!2" id="006"></a></li>
     </ul>
     <ul class="ulNum">
         <li class="num">1</li>
@@ -21,6 +23,19 @@
 </div>
 <script src="js/slide.js"></script>
 <%--商品展示--%>
+<div class="itemList">
+    <ul class="itemList">
+        <li><a href="">全部</a></li>
+        <li><a href="">休闲</a></li>
+        <li><a href="">动作</a></li>
+        <li><a href="">角色扮演</a></li>
+        <li><a href="">策略</a></li>
+        <li><a href="">冒险</a></li>
+        <li><a href="">模拟</a></li>
+        <li><a href="">体育及竞速</a></li>
+    </ul>
+
+</div>
 
 
 
