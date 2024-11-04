@@ -12,7 +12,7 @@ import java.util.List;
 public class ItemDaoImpl implements ItemDao {
     private static final String GET_ALL_ITEM="select * from item";
     private static final String GET_ITEM="select * from item";
-    private static final String SEARCH_ITEM_LIST="select * from item where name like?";
+    private static final String SEARCH_ITEM_LIST="select * from item where name like? or type like?";
     private static final String GET_ITEM_BY_CATEGORY="select * from item where category=?";
 
 
@@ -64,6 +64,7 @@ public class ItemDaoImpl implements ItemDao {
             Connection connection= DBUtil.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement(SEARCH_ITEM_LIST);
             preparedStatement.setString(1,keyword);
+            preparedStatement.setString(2,keyword);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
                 items.add(this.resultSetToItem(resultSet));
