@@ -12,4 +12,13 @@
         <servlet-name>MainFormServlet</servlet-name>
         <url-pattern>/mainForm</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CatalogFormServlet</servlet-name>
+        <servlet-class>servlet.CatalogFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogFormServlet</servlet-name>
+        <url-pattern>/catalogForm</url-pattern>
+    </servlet-mapping>
 </web-app>
