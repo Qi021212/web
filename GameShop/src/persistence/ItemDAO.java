@@ -1,6 +1,6 @@
-package dao;
+package persistence;
 
-import model.Item;
+import domain.Item;
 import utils.DBUtil;
 
 import java.sql.*;

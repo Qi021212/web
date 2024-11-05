@@ -1,13 +1,11 @@
 package servlet;
 
-import dao.CartDAO;
+import persistence.CartDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Cart;
-import model.User;
+import domain.Cart;
 import service.CartService;
 
 

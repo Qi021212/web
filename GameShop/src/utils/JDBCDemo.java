@@ -1,9 +1,7 @@
 package utils;
 
-import dao.ItemDAO;
-import dao.UserDao;
-import model.Item;
-import model.User;
+import persistence.ItemDAO;
+import domain.Item;
 
 import java.util.List;
 

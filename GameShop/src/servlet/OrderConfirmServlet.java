@@ -1,21 +1,19 @@
 package servlet;
 
-import dao.CartDAO;
-import dao.ExistingGameDAO;
+import persistence.CartDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Item;
-import model.Order;
-import model.OrderItem;
-import model.User;
+import domain.Item;
+import domain.Order;
+import domain.OrderItem;
+import domain.User;
 import service.ExistingGameService;
 import service.OrderService;
 import service.UserService;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 public class OrderConfirmServlet extends HttpServlet {

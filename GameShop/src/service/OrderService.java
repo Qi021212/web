@@ -1,14 +1,13 @@
 package service;
 
-import dao.CartDAO;
-import dao.OrderDAO;
-import model.*;
+import persistence.CartDAO;
+import persistence.OrderDAO;
+import domain.*;
 import utils.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class OrderService {

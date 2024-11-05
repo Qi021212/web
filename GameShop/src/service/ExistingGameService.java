@@ -1,7 +1,7 @@
 package service;
 
-import dao.ExistingGameDAO;
-import model.ExistingGame;
+import persistence.ExistingGameDAO;
+import domain.ExistingGame;
 
 import java.util.List;
 

@@ -1,13 +1,9 @@
 package servlet;
 
-import dao.OrderDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
-import service.OrderService;
-import model.Order;
 
 import java.io.IOException;
 

@@ -62,7 +62,7 @@
 //    }
 //}
 
-package model;
+package domain;
 
 public class OrderItem {
     private int id;

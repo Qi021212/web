@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 public class Cart {
     private int id;

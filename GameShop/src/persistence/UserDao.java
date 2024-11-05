@@ -1,6 +1,6 @@
-package dao;
+package persistence;
 
-import model.User;
+import domain.User;
 import utils.DBUtil;
 
 import java.sql.Connection;

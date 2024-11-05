@@ -1,6 +1,4 @@
-package model;
-
-import utils.PriceUtils;
+package domain;
 
 import java.util.*;
 

@@ -1,7 +1,7 @@
 package service;
 
-import dao.CartDAO;
-import model.Cart;
+import persistence.CartDAO;
+import domain.Cart;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
-package dao;
+package persistence;
 
-import model.Item;
-import model.Order;
-import model.OrderItem;
-import model.User;
+import domain.Item;
+import domain.Order;
+import domain.OrderItem;
 import utils.DBUtil;
 
 import java.sql.*;

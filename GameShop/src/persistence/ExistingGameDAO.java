@@ -1,6 +1,6 @@
-package dao;
+package persistence;
 
-import model.ExistingGame;
+import domain.ExistingGame;
 import utils.DBUtil;
 
 import java.sql.Connection;

@@ -1,7 +1,6 @@
-package dao;
+package persistence;
 
-import model.Cart;
-import model.Item;
+import domain.Cart;
 import utils.DBUtil;
 
 import java.sql.*;
