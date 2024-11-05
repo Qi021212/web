@@ -21,26 +21,46 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        int itemId = Integer.parseInt(request.getParameter("itemId"));
+        String itemIdStr = request.getParameter("itemId");
+
+        if (itemIdStr == null || action == null) {
+//            System.out.println("Invalid request: itemId or action is null");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        int itemId = Integer.parseInt(itemIdStr);
+
+//        int itemId = Integer.parseInt(request.getParameter("itemId"));
+        int userId = HARD_CODED_USER_ID; // 需要替换为实际用户ID
+
+//        System.out.println("Action: " + action + ", Item ID: " + itemId);
 
         switch (action) {
-            case "add":
+            case "buy":
                 // 增加数量
-                cartService.updateCartItem(HARD_CODED_USER_ID, itemId, 1);
+                cartService.updateCartItem(userId, itemId, 1);
                 break;
-            case "reduce":
+            case "lessen":
                 // 减少数量
-                cartService.updateCartItem(HARD_CODED_USER_ID, itemId, -1);
+                cartService.updateCartItem(userId, itemId, -1);
                 break;
             case "delete":
                 // 删除商品
-                cartService.deleteCartItem(HARD_CODED_USER_ID, itemId);
+                cartService.deleteCartItem(userId, itemId);
+                break;
+            case "submitOrder":
+                //提交订单
+                double totalAmount = Double.parseDouble(request.getParameter("totalAmount"));
+                request.getSession().setAttribute("totalAmount", totalAmount); // 存储总金额
+                response.sendRedirect(request.getContextPath() + "/order_submit");
+//                response.sendRedirect("order_submit");
                 break;
             case "addToCart":
                 // 添加商品到购物车
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
                 double price = Double.parseDouble(request.getParameter("price"));
-                Cart cart = new Cart(HARD_CODED_USER_ID, itemId, quantity, price * quantity, price);
+                Cart cart = new Cart(userId, itemId, quantity, price * quantity, price);
                 CartDAO cartDAO = new CartDAO();
                 int result = cartDAO.insertCart(cart);
                 if (result > 0) {
@@ -50,41 +70,24 @@ public class CartServlet extends HttpServlet {
                 }
                 return;
         }
-
         // 重定向到购物车页面
-        response.sendRedirect("cart.jsp");
+//        response.sendRedirect(request.getContextPath() + "/cart");
+        response.sendRedirect("cart");
     }
-
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int itemId = Integer.parseInt(request.getParameter("itemId"));
-//        int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        double price = Double.parseDouble(request.getParameter("price")); // 获取商品价格
-//        double amount = price * quantity; // 计算总金额
-//
-//        // 创建购物车对象
-//        Cart cart = new Cart(HARD_CODED_USER_ID, itemId, quantity, amount, price);
-//
-//        // 将商品添加到购物车或更新数量
-//        cartService.addToCart(cart);
-//
-//        // 跳转到购物车成功页面
-//        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
-//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Cart> cartItems = cartService.getCartItemsByUserId(HARD_CODED_USER_ID); // 获取购物车商品
-        double totalAmount = 0;
-        for (Cart item : cartItems) {
-            totalAmount += item.getAmount(); // 假设 Cart 类有 getAmount() 方法
-        }
+//        double totalAmount = 0;
+//        for (Cart item : cartItems) {
+//            totalAmount += item.getAmount(); // 假设 Cart 类有 getAmount() 方法
+//        }
+        double totalAmount = cartItems.stream().mapToDouble(Cart::getAmount).sum();
 
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("totalAmount", totalAmount); // 将总金额传递到 JSP
         request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
     }
-
-
 
     // 更新购物车商品数量
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -106,6 +109,22 @@ public class CartServlet extends HttpServlet {
         // 删除后重定向到购物车页面
         response.sendRedirect("cart");
     }
+
+    //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        int itemId = Integer.parseInt(request.getParameter("itemId"));
+//        int quantity = Integer.parseInt(request.getParameter("quantity"));
+//        double price = Double.parseDouble(request.getParameter("price")); // 获取商品价格
+//        double amount = price * quantity; // 计算总金额
+//
+//        // 创建购物车对象
+//        Cart cart = new Cart(HARD_CODED_USER_ID, itemId, quantity, amount, price);
+//
+//        // 将商品添加到购物车或更新数量
+//        cartService.addToCart(cart);
+//
+//        // 跳转到购物车成功页面
+//        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
+//    }
 
 
     //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

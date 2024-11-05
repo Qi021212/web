@@ -24,20 +24,47 @@ public class CartService {
         }
     }
 
-    // 获取用户购物车中的商品
-    public List<Cart> getCartItemsByUserId(int userId) {
-        return cartDao.getCartItemsByUserId(userId); // 根据用户 ID 获取购物车商品
-    }
-
-    // 更新购物车中商品的数量
     public void updateCartItem(int userId, int itemId, int quantityChange) {
-        // 这里你可以根据数量变化量进行更新
-        cartDao.updateCartItem(userId, itemId, quantityChange);
+        Cart cartItem = cartDao.getCartItem(userId, itemId);
+        if (cartItem != null) {
+            int newQuantity = cartItem.getQuantity() + quantityChange;
+            if (newQuantity <= 0) {
+                cartDao.deleteCartItem(userId, itemId);
+            } else {
+                cartDao.updateCartItem(userId, itemId, quantityChange);
+            }
+        }
     }
+    // 更新购物车中商品的数量
+//    public void updateCartItem(int userId, int itemId, int quantityChange) {
+////        // 这里你可以根据数量变化量进行更新
+////        cartDao.updateCartItem(userId, itemId, quantityChange);
+//
+//        // 更新购物车中商品数量
+//        if (quantityChange > 0) {
+//            cartDao.updateCartItem(userId, itemId, quantityChange);
+//        } else {
+//            // 如果数量减少，检查是否减少到零，若是则删除
+//            Cart cartItem = cartDao.getCartItem(userId, itemId);
+//            if (cartItem != null) {
+//                int newQuantity = cartItem.getQuantity() + quantityChange;
+//                if (newQuantity <= 0) {
+//                    deleteCartItem(userId, itemId); // 数量为0，删除商品
+//                } else {
+//                    cartDao.updateCartItem(userId, itemId, quantityChange); // 更新数量
+//                }
+//            }
+//        }
+//    }
 
     // 删除购物车中的商品
     public void deleteCartItem(int userId, int itemId) {
         cartDao.deleteCartItem(userId, itemId);
+    }
+
+    // 获取用户购物车中的商品
+    public List<Cart> getCartItemsByUserId(int userId) {
+        return cartDao.getCartItemsByUserId(userId); // 根据用户 ID 获取购物车商品
     }
 
 //    // 调整购物车商品数量

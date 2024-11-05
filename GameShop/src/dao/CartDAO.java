@@ -100,6 +100,23 @@ public class CartDAO {
         return cartItems;
     }
 
+    //获取单个购物车项的方法
+    public Cart getCartItem(int userId, int itemId) {
+        String sql = "SELECT * FROM cart WHERE user_id = ? AND item_id = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, itemId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Cart(userId, itemId, rs.getInt("quantity"), rs.getDouble("amount"), rs.getDouble("price"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     // 更新购物车商品数量
     public void updateCartItem(int userId, int itemId, int quantityChange) {
         String sql = "UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND item_id = ?";

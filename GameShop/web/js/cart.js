@@ -71,24 +71,44 @@
 //     calTotal();
 // });
 
-function buy(itemId) {
-    // 发起 AJAX 请求增加数量
-    $.post('/cart/update', { itemId: itemId, action: 'buy' }, function(data) {
-        location.reload(); // 刷新页面
+// function buy(itemId) {
+//     // 发起 AJAX 请求增加数量
+//     $.post('/cart/update', { itemId: itemId, action: 'buy' }, function(data) {
+//         location.reload(); // 刷新页面
+//     });
+// }
+//
+// function lessen(itemId) {
+//     // 发起 AJAX 请求减少数量
+//     $.post('/cart/update', { itemId: itemId, action: 'lessen' }, function(data) {
+//         location.reload(); // 刷新页面
+//     });
+// }
+//
+// // 删除商品的方法
+// function deletes(itemId) {
+//     $.post('/cart/delete', { itemId: itemId }, function(data) {
+//         location.reload(); // 刷新页面
+//     });
+// }
+
+
+function buy(itemId,price) {
+    $.post('${pageContext.request.contextPath}/cart', { itemId: itemId, action: 'buy', quantity: 1, price: price}, function(data) {
+        location.reload();
     });
 }
 
 function lessen(itemId) {
-    // 发起 AJAX 请求减少数量
-    $.post('/cart/update', { itemId: itemId, action: 'lessen' }, function(data) {
-        location.reload(); // 刷新页面
+    $.post('/cart', { itemId: itemId, action: 'lessen' }, function(data) {
+        location.reload();
     });
 }
 
-// 删除商品的方法
 function deletes(itemId) {
-    $.post('/cart/delete', { itemId: itemId }, function(data) {
-        location.reload(); // 刷新页面
+    $.post('/cart', { itemId: itemId, action: 'delete' }, function(data) {
+        location.reload();
     });
 }
+
 

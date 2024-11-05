@@ -31,5 +31,23 @@
         <url-pattern>/order_submit</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <servlet-class>servlet.OrderConfirmServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <url-pattern>/order_confirm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderListServlet</servlet-name>
+        <servlet-class>servlet.OrderListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderListServlet</servlet-name>
+        <url-pattern>/order_list</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

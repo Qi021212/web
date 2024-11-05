@@ -68,6 +68,10 @@ public class User {
         isAdmin = admin;
     }
 
+    public User(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return id + "," + username + "," + password + "," + email + "," + age + "," + isAdmin;
