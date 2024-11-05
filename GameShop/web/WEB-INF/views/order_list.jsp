@@ -69,6 +69,11 @@
 		</div>
 	</div>
 	<!--//cart-items-->
+
+	<!-- 引入已有游戏列表 -->
+	<jsp:include page="/WEB-INF/views/existing_games.jsp">
+		<jsp:param name="existingGames" value="${existingGames}" />
+	</jsp:include>
 </body>
 </html>
 

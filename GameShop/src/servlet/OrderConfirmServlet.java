@@ -1,5 +1,7 @@
 package servlet;
 
+import dao.CartDAO;
+import dao.ExistingGameDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import model.Item;
 import model.Order;
 import model.OrderItem;
 import model.User;
+import service.ExistingGameService;
 import service.OrderService;
 import service.UserService;
 
@@ -18,10 +21,13 @@ import java.util.Date;
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
     private UserService userService = new UserService(); // 假设你有 UserService 来获取用户信息
+    private CartDAO cartDAO = new CartDAO();
+    private ExistingGameService existingGameService = new ExistingGameService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从请求中获取 userId
         int userId = Integer.parseInt(request.getParameter("userId"));
+//        int userId = 1;
 
         // 根据 userId 获取用户信息
         User user = userService.getUserByUserId(userId);
@@ -55,27 +61,20 @@ public class OrderConfirmServlet extends HttpServlet {
                 // 从数据库或其他地方获取商品信息
                 Item item = oService.getItemById(itemId); // 假设您有这个方法来获取 Item
                 if (item != null) {
-//                    OrderItem orderItem = new OrderItem();
-//                    orderItem.setOrder(o);
-//                    orderItem.setOrderId(orderId); // 设置 orderId
-//                    orderItem.setItemId(itemId);
-//                    orderItem.setItem(item);
-//                    orderItem.setPrice(item.getPrice()); // 获取商品价格
-//                    orderItem.setAmount(quantity);
                     OrderItem orderItem = new OrderItem(itemId, item, item.getPrice(), quantity, o);
-
-//                    OrderItem orderItem = new OrderItem();
-//                    orderItem.setOrderId(orderId);
-//                    orderItem.setItemId(Integer.parseInt(itemIds[i]));
-//                    orderItem.setPrice(Double.parseDouble(request.getParameter("price_" + itemIds[i]))); // 假设你在表单中有价格
-//                    orderItem.setAmount(Integer.parseInt(quantities[i]));
-//                    oService.addOrderItem(orderItem);
 
                     // 保存订单项
                     oService.addOrderItem(orderItem);
+
+                    // Check if the game already exists for this user
+                    if (!existingGameService.isGameAlreadyExist(userId, itemId)) {
+                        existingGameService.addExistingGame(userId, itemId, item.getName());
+                    }
                 }
             }
         }
+        // 清空购物车：删除用户所有购物车项
+        cartDAO.deleteAllItemsByUserId(userId);
 
         request.setAttribute("msg", "订单支付成功！");
         request.getRequestDispatcher("/WEB-INF/views/order_success.jsp").forward(request, response);
@@ -85,3 +84,17 @@ public class OrderConfirmServlet extends HttpServlet {
         this.doPost(request, response);
     }
 }
+//                    OrderItem orderItem = new OrderItem();
+//                    orderItem.setOrder(o);
+//                    orderItem.setOrderId(orderId); // 设置 orderId
+//                    orderItem.setItemId(itemId);
+//                    orderItem.setItem(item);
+//                    orderItem.setPrice(item.getPrice()); // 获取商品价格
+//                    orderItem.setAmount(quantity);
+
+//                    OrderItem orderItem = new OrderItem();
+//                    orderItem.setOrderId(orderId);
+//                    orderItem.setItemId(Integer.parseInt(itemIds[i]));
+//                    orderItem.setPrice(Double.parseDouble(request.getParameter("price_" + itemIds[i]))); // 假设你在表单中有价格
+//                    orderItem.setAmount(Integer.parseInt(quantities[i]));
+//                    oService.addOrderItem(orderItem);

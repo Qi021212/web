@@ -173,6 +173,19 @@ public class CartDAO {
         }
     }
 
+    // 删除用户所有购物车项
+    public void deleteAllItemsByUserId(int userId) {
+        String sql = "DELETE FROM cart WHERE user_id = ?";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 //    //插入购物车方法1
 //    public void addToCart(Cart cart) {
