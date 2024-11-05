@@ -1,6 +1,5 @@
 package servlet;
 
-import domain.Cart;
 import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

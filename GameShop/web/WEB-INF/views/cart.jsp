@@ -47,60 +47,45 @@
 <html>
 <head>
   <title>购物车</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="container">
   <h2>我的购物车</h2>
-  <div class="row">
-    <table class="table table-striped">
+  <div>
+    <table>
       <thead>
       <tr>
-        <th>商品ID</th>
         <th>商品名称</th>
-        <th>数量</th>
+        <th>商品图片</th>
         <th>单价</th>
-        <th>总价</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <c:if test="${empty cartItems}">
         <tr>
-          <td colspan="6" class="text-center">购物车为空。</td>
+          <td colspan="4" class="text-center">购物车为空。</td>
         </tr>
       </c:if>
       <c:forEach var="cartItem" items="${cartItems}">
         <tr>
-          <td>${cartItem.itemId}</td>
-          <td><a href="/goods_detail?id=${cartItem.itemId}">${cartItem.name}</a></td>
-          <td>${cartItem.quantity}</td>
+          <td>${cartItem.item.name}</td>
+          <td><img src="${cartItem.item.picture}" alt="${cartItem.item.name}" width="100" height="100"></td>
           <td>¥ ${cartItem.price}</td>
-          <td>¥ ${cartItem.amount}</td>
           <td>
-            <form action="${pageContext.request.contextPath}/cart" method="post">
-              <input type="hidden" name="action" value="buy">
-              <input type="hidden" name="itemId" value="${cartItem.itemId}">
-              <button type="submit" class="btn btn-info">增加</button>
-            </form>
-            <form action="${pageContext.request.contextPath}/cart" method="post">
-              <input type="hidden" name="action" value="lessen">
-              <input type="hidden" name="itemId" value="${cartItem.itemId}">
-              <button type="submit" class="btn btn-warning">减少</button>
-            </form>
-            <form action="${pageContext.request.contextPath}/cart" method="post">
+            <form action="cart" method="post">
               <input type="hidden" name="action" value="delete">
-              <input type="hidden" name="itemId" value="${cartItem.itemId}">
-              <button type="submit" class="btn btn-danger">删除</button>
+              <input type="hidden" name="itemId" value="${cartItem.item.id}">
+              <button type="submit">删除</button>
             </form>
           </td>
         </tr>
       </c:forEach>
       </tbody>
     </table>
-    <div class="col-md-12 text-right">
+    <div>
       <hr>
-      <h3>订单总金额: ¥ <span id="cart-total">${totalAmount}</span></h3>
+      <h3>总金额: ¥ ${totalAmount}</h3>
 <%--      <a class="btn btn-success btn-lg" href="#" onclick="document.getElementById('submitOrderForm').submit();">提交订单</a>--%>
 
       <form id="submitOrderForm" action="${pageContext.request.contextPath}/order_submit" method="post">
@@ -109,13 +94,10 @@
         <input type="hidden" name="userId" value="1"> <!-- 硬编码用户ID -->
         <c:forEach var="cartItem" items="${cartItems}">
           <input type="hidden" name="itemIds" value="${cartItem.itemId}">
-          <input type="hidden" name="quantities" value="${cartItem.quantity}">
         </c:forEach>
 <%--        <input type="hidden" name="userId" value="${user.id}"> <!-- 确保有用户ID -->--%>
         <button type="submit" class="btn btn-success btn-lg">提交订单</button>
       </form>
-
-<%--      <a class="btn btn-success btn-lg" href="/order_submit">提交订单</a>--%>
     </div>
   </div>
 </div>

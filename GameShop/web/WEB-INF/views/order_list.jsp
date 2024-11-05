@@ -5,8 +5,8 @@
 <html>
 <head>
 	<title>我的订单</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%--	<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+<%--	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">--%>
 </head>
 <body>
 
@@ -41,7 +41,7 @@
 							<td>
 								<p>${order.name }</p>
 								<p>${order.phone }</p>
-								<p>${order.address }</p>
+								<p>${order.email }</p>
 							</td>
 							<td>
 								<p>

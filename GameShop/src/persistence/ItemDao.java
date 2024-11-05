@@ -10,5 +10,10 @@ public interface ItemDao {
     List<Item> searchItemList(String keyword);
     Item getItem(int itemId);
 
+    //Dongenqie
+    List<Item> getAllItems();
+    void insertItem(Item item);
+    void deleteItem(int itemId);
+    Item getItemById(int id);
 
 }

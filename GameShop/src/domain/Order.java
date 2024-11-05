@@ -8,13 +8,13 @@ public class Order {
     private int id;
     private int userId;
     private double total;//总价
-    private int amount;// 商品总数
-    private int status;//1未付款/2已付款/3已发货/4已完成
-    private int paytype;//1微信/2支付宝/3货到付款
     private String name;
     private String phone;
-    private String address;
+    private String email;
+    private int paytype;//1微信/2支付宝/3货到付款
+    private int status;//1未付款/2已付款/3已发货/4已完成
     private Date datetime;
+
     private User user;
 //    private Map<Integer,OrderItem> itemMap = new HashMap<Integer,OrderItem>();
     private List<OrderItem> itemList = new ArrayList<OrderItem>();
@@ -23,14 +23,32 @@ public class Order {
     public Order(int id){
         this.id = id;
     }
+
+    public Order(int userId, String name, String phone, String email, double total, int paytype) {
+        this.userId = userId;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.total = total;
+        this.paytype = paytype;
+    }
     // 添加商品到订单
-
-
 
     public void addOrderItem(OrderItem item) {
         itemList.add(item);
-        this.amount += item.getAmount();
+//        this.amount += item.getAmount();
         this.total += item.getPrice() * item.getAmount();
+    }
+
+    public Order(int id, double total, String name, String phone, String email, int paytype, int status, Date datetime) {
+        this.id = id;
+        this.total = total;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.paytype = paytype;
+        this.status = status;
+        this.datetime = datetime;
     }
 
     public void setUsername(String username) {
@@ -114,12 +132,6 @@ public class Order {
     public void setTotal(double total) {
         this.total = total;
     }
-    public int getAmount() {
-        return amount;
-    }
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
     public int getStatus() {
         return status;
     }
@@ -144,12 +156,6 @@ public class Order {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
     public Date getDatetime() {
         return datetime;
     }
@@ -162,7 +168,16 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
-//    public Order() {
-//        super();
-//    }
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
+
+
+
 }
+
+//    public String getAddress() {
+//        return address;
+//    }
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }

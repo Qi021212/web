@@ -41,11 +41,3 @@ public class OrderListServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/order_list.jsp").forward(request, response);
     }
 }
-
-//        User u = (User) request.getSession().getAttribute("user");
-//        if(u==null)
-//        {
-//            response.sendRedirect("/index");
-//            return;
-//        }
-//        List<Order> list = oService.selectAll(u.getId());
