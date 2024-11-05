@@ -1,12 +1,16 @@
 package service;
 
 import domain.Cart;
+import domain.Item;
 import persistence.CartDAO;
+import persistence.ItemDao;
+import persistence.impl.ItemDaoImpl;
 
 import java.util.List;
 
 public class CartService {
     CartDAO cartDao = new CartDAO();
+    ItemDao itemDAO = new ItemDaoImpl();    // 用来获取 item 的信息
 
 //    // 创建购物车或更新购物车中的商品
 //    public void addToCart(Cart cart) {
@@ -17,24 +21,26 @@ public class CartService {
     public void addToCart(Cart cart) {
         if (cartDao.itemExists(cart.getUserId(), cart.getItemId())) {
             // 如果商品已存在，则更新数量
-            cartDao.updateCartItem(cart.getUserId(), cart.getItemId(), cart.getQuantity());
+//            cartDao.updateCartItem(cart.getUserId(), cart.getItemId());
+
         } else {
             // 如果商品不存在，则插入
             cartDao.insertCart(cart);
         }
     }
 
-    public void updateCartItem(int userId, int itemId, int quantityChange) {
-        Cart cartItem = cartDao.getCartItem(userId, itemId);
-        if (cartItem != null) {
-            int newQuantity = cartItem.getQuantity() + quantityChange;
-            if (newQuantity <= 0) {
-                cartDao.deleteCartItem(userId, itemId);
-            } else {
-                cartDao.updateCartItem(userId, itemId, quantityChange);
-            }
-        }
-    }
+//    public void updateCartItem(int userId, int itemId, int quantityChange) {
+//        Cart cartItem = cartDao.getCartItem(userId, itemId);
+//        if (cartItem != null) {
+//            int newQuantity = cartItem.getQuantity() + quantityChange;
+//            if (newQuantity <= 0) {
+//                cartDao.deleteCartItem(userId, itemId);
+//            } else {
+//                cartDao.updateCartItem(userId, itemId, quantityChange);
+//            }
+//        }
+//    }
+
     // 更新购物车中商品的数量
 //    public void updateCartItem(int userId, int itemId, int quantityChange) {
 ////        // 这里你可以根据数量变化量进行更新
@@ -64,7 +70,13 @@ public class CartService {
 
     // 获取用户购物车中的商品
     public List<Cart> getCartItemsByUserId(int userId) {
-        return cartDao.getCartItemsByUserId(userId); // 根据用户 ID 获取购物车商品
+//        return cartDao.getCartItemsByUserId(userId); // 根据用户 ID 获取购物车商品
+        List<Cart> cartItems = cartDao.getCartItemsByUserId(userId); // 获取购物车商品
+        for (Cart cartItem : cartItems) {
+            Item item = itemDAO.getItemById(cartItem.getItemId()); // 获取商品的详细信息
+            cartItem.setItem(item); // 将商品信息设置到 Cart 中
+        }
+        return cartItems;
     }
 
 //    // 调整购物车商品数量

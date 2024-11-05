@@ -109,4 +109,99 @@ public class ItemDaoImpl implements ItemDao {
         item.setPrice(resultSet.getDouble("price"));
         return item;
     }
+
+    //Dongenqie
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        // JDBC code to fetch items from database
+        // Use DBUtil for getting connection
+        String sql = "SELECT * FROM item";
+        try {
+            Connection connection = DBUtil.getConnection();
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Item item = new Item();
+//                Item item = this.resultSetToItem(resultSet);
+                item.setId(resultSet.getInt("id"));
+                item.setName(resultSet.getString("name"));
+                item.setPrice(resultSet.getDouble("price"));
+                item.setDescription(resultSet.getString("description"));
+                items.add(item);
+            }
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(preparedStatement);
+//            DBUtil.closeStatement(statement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+
+    // 插入商品
+    public void insertItem(Item item) {
+        String sql = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, item.getName());
+            preparedStatement.setDouble(2, item.getPrice());
+            preparedStatement.setString(3, item.getDescription());
+            preparedStatement.executeUpdate();
+
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 删除商品
+    public void deleteItem(int itemId) {
+        String sql = "DELETE FROM item WHERE id = ?";
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, itemId);
+            preparedStatement.executeUpdate();
+
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Item getItemById(int id) {
+        Item item = null;
+        String sql = "SELECT * FROM item WHERE id = ?";
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                item = new Item();
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("name"));
+                item.setCategory(rs.getString("category"));
+                item.setType(rs.getString("type"));
+                item.setPicture(rs.getString("picture"));
+                item.setDescription(rs.getString("description"));
+                item.setPrice(rs.getDouble("price"));
+            }
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(stmt);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return item;
+    }
+
 }

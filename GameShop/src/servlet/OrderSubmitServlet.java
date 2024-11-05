@@ -4,21 +4,39 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.CartService;
+import service.OrderService;
+import domain.Cart;
+import domain.Order;
 
 import java.io.IOException;
+import java.util.List;
 
 public class OrderSubmitServlet extends HttpServlet {
+    OrderService orderService = new OrderService();
+    CartService cartService = new CartService();
+
+    int userId=1;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 获取购物车信息
+//        // 获取购物车信息
+//        String[] itemIds = req.getParameterValues("itemIds");
+//        String totalAmount = req.getParameter("totalAmount");
+//
+//        // 将这些信息放入请求中，传递到订单提交页面
+//        req.setAttribute("itemIds", itemIds);
+        // 获取购物车商品信息
         String[] itemIds = req.getParameterValues("itemIds");
-        String[] quantities = req.getParameterValues("quantities");
-        String totalAmount = req.getParameter("totalAmount");
+        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
+        double totalAmount = 0;
+        for (Cart cartItem : cartItems) {
+            totalAmount += cartItem.getPrice(); // 计算总金额
+        }
 
-        // 将这些信息放入请求中，传递到订单提交页面
+        // 将购物车商品和总金额传递到请求中
         req.setAttribute("itemIds", itemIds);
-        req.setAttribute("quantities", quantities);
+        req.setAttribute("cartItems", cartItems);
         req.setAttribute("totalAmount", totalAmount);
 
         // 由于使用了硬编码，这里直接重定向到提交页面

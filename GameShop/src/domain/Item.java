@@ -26,6 +26,10 @@ public class Item implements java.io.Serializable {
     }
 
     //Dongenqie
+    public int getId() {
+        return id;
+    }
+
     public Item(int id) {
         this.id = id;
     }

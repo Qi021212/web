@@ -39,14 +39,14 @@ public class CartBuyServlet extends HttpServlet {
             Cart cart = new Cart();
             cart.setUserId(userId);
             cart.setItemId(Integer.parseInt(itemsId));
-            cart.setQuantity(Integer.parseInt(quantityStr));
+//            cart.setQuantity(Integer.parseInt(quantityStr));
             cart.setPrice(price);
-            cart.setAmount(price * cart.getQuantity());
+//            cart.setAmount(price * cart.getQuantity());
             cartService.addToCart(cart);
             resp.getWriter().print("ok");
         } else if ("lessen".equals(action)) {
             // 处理减少数量的逻辑
-            cartService.updateCartItem(userId, Integer.parseInt(itemsId), -1);
+//            cartService.updateCartItem(userId, Integer.parseInt(itemsId), -1);
             resp.getWriter().print("ok");
         } else if ("delete".equals(action)) {
             // 处理删除商品的逻辑

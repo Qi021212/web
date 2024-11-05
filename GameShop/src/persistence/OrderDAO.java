@@ -12,29 +12,36 @@ import java.util.List;
 public class OrderDAO {
     //插入订单
     public int insertOrder(Order order) {
-        String sql = "INSERT INTO orders (user_id, total, amount, status, paytype, name, phone, address, datetime) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO orders (user_id, total, name, phone, email, paytype, status, datetime) " +
+                "VALUES (?, ?, ?, ?, ?, ?, 0, NOW())";
         try {
             Connection conn = DBUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.setInt(1, order.getUser().getId());
+            pstmt.setInt(1, order.getUserId());
             pstmt.setDouble(2, order.getTotal());
-            pstmt.setInt(3, order.getAmount());
-            pstmt.setInt(4, order.getStatus());
-            pstmt.setInt(5, order.getPaytype());
-            pstmt.setString(6, order.getName());
-            pstmt.setString(7, order.getPhone());
-            pstmt.setString(8, order.getAddress());
-            pstmt.setTimestamp(9, new Timestamp(order.getDatetime().getTime()));
+            pstmt.setString(3, order.getName());
+            pstmt.setString(4, order.getPhone());
+            pstmt.setString(5, order.getEmail());
+            pstmt.setInt(6, order.getPaytype());
+
+//            pstmt.setInt(1, order.getUser().getId());
+//            pstmt.setDouble(2, order.getTotal());
+//            pstmt.setInt(3, order.getAmount());
+//            pstmt.setInt(4, order.getStatus());
+//            pstmt.setInt(5, order.getPaytype());
+//            pstmt.setString(6, order.getName());
+//            pstmt.setString(7, order.getPhone());
+//            pstmt.setString(8, order.getAddress());
+//            pstmt.setTimestamp(9, new Timestamp(order.getDatetime().getTime()));
 
             pstmt.executeUpdate();
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                if (rs.next()) {
-                    return rs.getInt(1);  // 返回订单ID
-                }
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);  // 返回订单ID
             }
+
             DBUtil.closeResultSet(pstmt.getResultSet());
             DBUtil.closePreparedStatement(pstmt);
             DBUtil.closeConnection(conn);
@@ -46,7 +53,7 @@ public class OrderDAO {
 
     //插入订单项
     public void insertOrderItem(OrderItem orderItem) {
-        String sql = "INSERT INTO order_items (order_id, item_id, price, amount) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO order_items (order_id, item_id, price) VALUES (?, ?, ?)";
         try {
             Connection conn = DBUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -54,7 +61,6 @@ public class OrderDAO {
             pstmt.setInt(1, orderItem.getOrder().getId());
             pstmt.setInt(2, orderItem.getItem().getId());
             pstmt.setDouble(3, orderItem.getPrice());
-            pstmt.setInt(4, orderItem.getAmount());
             pstmt.executeUpdate();
             DBUtil.closePreparedStatement(pstmt);
             DBUtil.closeConnection(conn);
@@ -77,12 +83,12 @@ public class OrderDAO {
                 order.setId(rs.getInt("id"));
                 order.setUserId(rs.getInt("user_id")); // Assuming User object is created like this
                 order.setTotal(rs.getFloat("total"));
-                order.setAmount(rs.getInt("amount"));
+//                order.setAmount(rs.getInt("amount"));
                 order.setStatus(rs.getInt("status"));
                 order.setPaytype(rs.getInt("paytype"));
                 order.setName(rs.getString("name"));
                 order.setPhone(rs.getString("phone"));
-                order.setAddress(rs.getString("address"));
+//                order.setAddress(rs.getString("address"));
                 order.setDatetime(rs.getTimestamp("datetime"));
                 orders.add(order);
             }
@@ -226,7 +232,7 @@ public class OrderDAO {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setTotal(rs.getFloat("total"));
-                order.setAmount(rs.getInt("amount"));
+//                order.setAmount(rs.getInt("amount"));
                 order.setStatus(rs.getInt("status"));
                 order.setPaytype(rs.getInt("paytype"));
                 order.setDatetime(rs.getTimestamp("datetime"));
@@ -255,11 +261,11 @@ public class OrderDAO {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setTotal(rs.getDouble("total"));
-                order.setStatus(rs.getInt("status"));
-                order.setPaytype(rs.getInt("paytype"));
                 order.setName(rs.getString("name"));
                 order.setPhone(rs.getString("phone"));
-                order.setAddress(rs.getString("address"));
+                order.setEmail(rs.getString("email"));
+                order.setPaytype(rs.getInt("paytype"));
+                order.setStatus(rs.getInt("status"));
                 order.setDatetime(rs.getDate("datetime"));
                 // 还可以加入itemList
                 orders.add(order);

@@ -1,6 +1,8 @@
 package service;
 
 import domain.Item;
+import domain.Order;
+import domain.OrderItem;
 import persistence.CartDAO;
 import persistence.OrderDAO;
 import utils.DBUtil;

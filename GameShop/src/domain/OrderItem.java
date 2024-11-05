@@ -82,11 +82,10 @@ public class OrderItem {
         this.order = order;
     }
 
-    public OrderItem(int itemId, Item item, double price, int amount, Order order) {
+    public OrderItem(int itemId, Item item, double price, Order order) {
         this.itemId = itemId;
         this.item = item;
         this.price = price;
-        this.amount = amount;
         this.order = order;
     }
 

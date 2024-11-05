@@ -7,14 +7,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import persistence.CartDAO;
-import persistence.ItemDAO;
+import persistence.ItemDao;
+import persistence.impl.ItemDaoImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ItemServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ItemDAO itemDAO = new ItemDAO();
+        ItemDao itemDAO = new ItemDaoImpl();
         List<Item> items = itemDAO.getAllItems();//这个方法用不了，有点问题。在这里修改直接硬编码，将已有的items信息传下去
 
         request.setAttribute("items", items);
