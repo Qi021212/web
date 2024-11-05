@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CatalogFormServlet extends HttpServlet {
     private CatalogService catalogService;
-    private static final String Category_Form = "/WEB-INF/jsp/catalog/main.jsp";
+    private static final String Catalog_Form = "/WEB-INF/jsp/catalog/main.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +22,6 @@ public class CatalogFormServlet extends HttpServlet {
         catalogService =new CatalogService();
         HttpSession session = req.getSession();
         List<Item> itemList;
-//        Category category = catalogService.getCategoryById(categoryId);
         if(categoryId.equals("all")){
             itemList = catalogService.getAllItem();
 
@@ -30,9 +29,8 @@ public class CatalogFormServlet extends HttpServlet {
         else{
             itemList = catalogService.getItemByCategory(categoryId);
         }
-//        session.setAttribute("category", category);
         session.setAttribute("itemList", itemList);
-        req.getRequestDispatcher(Category_Form).forward(req, resp);
+        req.getRequestDispatcher(Catalog_Form).forward(req, resp);
     }
 
 }

@@ -17,14 +17,8 @@ public class CatalogService {
         this.itemDao = new ItemDaoImpl();
     }
 
-    public List<Category> getCategoryList() {
-        return categoryDao.getCategoryList();
-    }
-    public Category getCategoryById(String categoryId) {
-        return categoryDao.getCategoryById(categoryId);
-    }
-    public Item getItem(int itemId) {
-        return itemDao.getItem(itemId);
+    public List<Item> getItemBySrc(String src) {
+        return itemDao.getItemBySrc(src);
     }
     public List<Item> getAllItem(){
         return itemDao.getAllItem();

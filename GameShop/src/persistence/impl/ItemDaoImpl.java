@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDaoImpl implements ItemDao {
-    private static final String GET_ALL_ITEM="select * from item";
-    private static final String GET_ITEM="select * from item";
-    private static final String SEARCH_ITEM_LIST="select * from item where name like? or type like?";
     private static final String GET_ITEM_BY_CATEGORY="select * from item where category=?";
+    private static final String GET_ALL_ITEM="select * from item";
+    private static final String SEARCH_ITEM_LIST="select * from item where name like? or type like?";
+    private static final String GET_ITEM_BY_PICTURE_SRC="select * from item where picture=?";
+
+
 
 
     @Override
@@ -80,22 +82,25 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public Item getItem(int itemId) {
-        Item item=null;
+    public List<Item> getItemBySrc(String src)
+    {
+        List<Item> items=new ArrayList<Item>();
         try {
-            Connection connection = DBUtil.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_ITEM);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            Connection connection= DBUtil.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement(GET_ITEM_BY_PICTURE_SRC);
+            preparedStatement.setString(1,src);
+            ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
-                item=this.resultSetToItem(resultSet);
+                items.add(this.resultSetToItem(resultSet));
             }
             DBUtil.closeResultSet(resultSet);
             DBUtil.closePreparedStatement(preparedStatement);
             DBUtil.closeConnection(connection);
+
         }catch (Exception e){
             e.printStackTrace();
         }
-        return item;
+        return items;
     }
 
     public Item resultSetToItem(ResultSet resultSet) throws SQLException {

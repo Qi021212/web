@@ -8,7 +8,5 @@ public interface ItemDao {
     List<Item> getItemByCategory(String categoryId);
     List<Item> getAllItem();
     List<Item> searchItemList(String keyword);
-    Item getItem(int itemId);
-
-
+    List<Item> getItemBySrc(String src);
 }
