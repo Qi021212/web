@@ -25,6 +25,11 @@ public class Item implements java.io.Serializable {
         this.description = description;
     }
 
+    //Dongenqie
+    public Item(int id) {
+        this.id = id;
+    }
+
     public Item(int id, String name, String category, String type, String picture, String description, double price) {
         this.id = id;
         this.name = name;
@@ -36,7 +41,7 @@ public class Item implements java.io.Serializable {
     }
 
     public int getId(int id) {
-        return this.id;
+        return id;
     }
 
     public String getName() {

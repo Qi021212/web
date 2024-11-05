@@ -6,6 +6,10 @@ public class User {
     private String password;
     private String email;
 
+    //dongenqie
+    private int age;
+    private boolean isAdmin;
+
     public User() {
     }
 
@@ -14,6 +18,15 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    //dongenqie
+    public User(String username, String password, String email, int age, boolean isAdmin) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+        this.isAdmin = isAdmin;
     }
 
     public int getId() {
@@ -46,6 +59,20 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //dongenqie
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
 }

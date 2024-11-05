@@ -30,4 +30,51 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
+
+    <!--dongenqie-->
+    <servlet>
+        <servlet-name>ItemServlet</servlet-name>
+        <servlet-class>servlet.ItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemServlet</servlet-name>
+        <url-pattern>/items</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>servlet.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderSubmitServlet</servlet-name>
+        <servlet-class>servlet.OrderSubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderSubmitServlet</servlet-name>
+        <url-pattern>/order_submit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <servlet-class>servlet.OrderConfirmServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <url-pattern>/order_confirm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderListServlet</servlet-name>
+        <servlet-class>servlet.OrderListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderListServlet</servlet-name>
+        <url-pattern>/order_list</url-pattern>
+    </servlet-mapping>
+    <!--/dongenqie-->
 </web-app>
