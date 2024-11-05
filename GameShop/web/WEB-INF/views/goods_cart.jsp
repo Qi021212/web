@@ -87,7 +87,7 @@
 			
 		</div>
 	</div>
-	<!--//cart-items-->	
+	<!--//cart-items-->
 
 
 	<!--footer-->

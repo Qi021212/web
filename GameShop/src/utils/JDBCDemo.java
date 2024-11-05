@@ -1,7 +1,7 @@
 package utils;
 
-import persistence.ItemDAO;
 import domain.Item;
+import persistence.ItemDAO;
 
 import java.util.List;
 

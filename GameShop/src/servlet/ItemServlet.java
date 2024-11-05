@@ -1,5 +1,6 @@
 package servlet;
 
+import domain.Item;
 import persistence.CartDAO;
 import persistence.ItemDAO;
 import jakarta.servlet.ServletException;
@@ -7,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import domain.Cart;
-import domain.Item;
 
 import java.io.IOException;
 import java.util.List;
