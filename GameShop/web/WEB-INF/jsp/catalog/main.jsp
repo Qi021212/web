@@ -1,5 +1,7 @@
 <%@ include file="../common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="domain.Item" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--轮播图--%>
@@ -48,10 +50,16 @@
     <table class="itemList">
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr class="itemList">
-                <td class="img"><a href="itemInformation?itemPicture=${item.picture}"><img src="${item.picture}" alt="${item.name}"></a></td>
+                <td class="img"><a href=" "><img src="${item.picture}" alt="${item.name}"></a></td>
                 <td class="name&type">${item.name}<br/><br/>${item.type}</td>
                 <td class="price">¥ ${item.price}</td>
-                <td class="add"><input type="submit" value="添加到购物车" class="addBtn" formaction=" "></td>
+                <td class="add">
+                    <form action="addToCart" method="POST">
+                        <input type="hidden" name="itemId" value="${item.id}" />
+                        <input type="hidden" name="price" value="${item.price}" />
+                        <input type="submit" value="添加到购物车" class="addBtn"/>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>
