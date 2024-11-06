@@ -14,12 +14,6 @@ public interface UserDao {
 
     public boolean insertUser(User user);
 
-    private User resultSetToUser(ResultSet resultSet) throws Exception {
-        User user = new User();
-        user.setId(resultSet.getInt("id"));
-        user.setUsername(resultSet.getString("username"));
-        user.setPassword(resultSet.getString("password"));
-        user.setEmail(resultSet.getString("email"));
-        return user;
-    }
+    boolean findUserByName(String username);
+
 }

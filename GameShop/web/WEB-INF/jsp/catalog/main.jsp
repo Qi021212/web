@@ -50,7 +50,7 @@
     <table class="itemList">
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr class="itemList">
-                <td class="img"><a href=" "><img src="${item.picture}" alt="${item.name}"></a></td>
+                <td class="img"><a href="itemInformation?itemPicture=${item.picture}"><img src="${item.picture}" alt="${item.name}"></a></td>
                 <td class="name&type">${item.name}<br/><br/>${item.type}</td>
                 <td class="price">¥ ${item.price}</td>
                 <td class="add">

@@ -40,7 +40,7 @@
 <%--<a href="items">继续浏览商品</a>--%>
 <%--</body>--%>
 <%--</html>--%>
-
+<%@ include file="../jsp/common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
