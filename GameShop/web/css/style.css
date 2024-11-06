@@ -209,3 +209,30 @@ td.buy{
     border: 1px solid #1b2838;
     margin-left: 5px;
 }
+
+/*userInfo*/
+table.userinfo{
+    width: 780px;
+    height: 400px;
+    background-color: #1a2127;
+    color: #a5bec3;
+    border-collapse: collapse;
+    margin: 100px auto;
+}
+.userinfo td{
+    padding: 28px;
+    font-size: 22px;
+}
+.editBtn{
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #223d57;
+    color: #f3f3f3;
+    border: 1px solid #1b2838;
+    float: right;
+    border-radius: 4px;
+}
+.editBtn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

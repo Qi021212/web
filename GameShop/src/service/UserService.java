@@ -1,38 +1,49 @@
 package service;
 
+import persistence.UserDao;
 import domain.User;
-import utils.DBUtil;
+import persistence.impl.UserDaoImpl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.List;
 
 public class UserService {
-    public User getUserByUserId(int userId) {
-        User user = null;
-        String query = "SELECT id, username, password, email FROM userinfo WHERE id = ?";
+    private UserDao userDao;
+    private String msg;
 
-        try {
-            Connection conn = DBUtil.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);
-
-            pstmt.setInt(1, userId);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                user = new User();
-                user.setId(rs.getInt("id"));
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setEmail(rs.getString("email"));
-            }
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(pstmt);
-            DBUtil.closeConnection(conn);
-        } catch (Exception e) {
-            e.printStackTrace(); // 可以进行更好的错误处理
-        }
-
-        return user;
+    public String getMsg() {
+        return msg;
     }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public UserService() {
+        this.userDao = new UserDaoImpl();
+    }
+    public User login(String username, String password) {
+        User loginUser = this.userDao.findUserByUsernameAndPassword(username, password);
+        if (loginUser == null) {
+            this.msg = "用户名或密码错误";
+            return null;
+        }
+        return loginUser;
+    }
+
+    public List<User> getAllUsers() {
+        return this.userDao.findAllUsers();
+    }
+
+    public boolean addUser(User registerUser) {
+        String username =  registerUser.getUsername();
+        if(userDao.findUserByName(username)){
+            this.msg = "该用户名已存在";
+            return false;
+        }
+        return this.userDao.insertUser(registerUser);
+    }
+    public User findUserById(int id){
+        return this.userDao.findUserById(id);
+    }
+
 }

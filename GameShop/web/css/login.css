@@ -1,0 +1,118 @@
+body {
+
+    background-color: #1b2838;
+    color:#ffffff;
+    /*font:12px/1.5 ; !*系统默认字体形式大小颜色*!*/
+    padding: 50px 0;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.w{
+    width: 1080px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: #1b2838;
+    padding: 50px 0;
+}
+
+.user-content{
+    position: relative;
+    margin: 0 auto;
+    background: #171d25;
+    width: 400px;
+}
+
+.user-title{
+    position: relative;
+    font-family:inherit;
+    font-style: italic;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    border-bottom: 1px solid #999;
+}
+
+.login-tip{
+
+}
+.user-form{
+    padding:20px;
+}
+
+.user-form-item{
+    position: relative;
+    margin-top: 20px;
+}
+.user-form-input{
+    padding: 10px 0 10px 50px;
+    width: 300px;
+    height: 1px;
+    line-height: 28px;
+    font-size: 15px;
+    border: 1px solid #bdbdbd;
+    outline: none;
+}
+.user-form-label{
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 30px;
+    line-height: 22px;
+    background: #f3f3f3;
+    color: #d3d3d3;
+    text-align: center;
+    border-right: 1px solid #bdbdbd;
+}
+.user-form-capt{
+    height: 20px;
+}
+.user-form-submit{
+    width: 200px;
+    font-size: 20px;
+    margin-left: 80px;
+    padding: 2px 0 40px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    background: #215496;
+    color: #ffffff;
+}
+
+.user-form-link{
+    text-align: right;
+    margin-right: 5px;
+}
+.link{
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
+}
+.link:hover{
+    color: #215496;
+}
+
+.user-form-error{
+    width: 300px;
+    position: relative;
+    padding: 4px 0 4px 40px;
+    color: red;
+    border: 1px solid red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.error-icon{
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    margin-top: -7px;
+}

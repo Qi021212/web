@@ -28,7 +28,7 @@ public class OrderListServlet extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
 
         // 根据 userId 获取用户信息
-        User user = userService.getUserByUserId(userId);
+        User user = userService.findUserById(userId);
 
         // 获取用户的所有订单
         List<Order> orderList = oService.selectAll(1);

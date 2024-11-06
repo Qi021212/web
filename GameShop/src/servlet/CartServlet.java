@@ -50,7 +50,7 @@ public class CartServlet extends HttpServlet {
                 request.getSession().setAttribute("totalAmount", totalAmount);
 
                 // 获取用户信息
-                User user = userService.getUserByUserId(userId); // 获取用户信息
+                User user = userService.findUserById(userId); // 获取用户信息
 
                 // 设置用户信息到请求中
                 request.setAttribute("user", user);

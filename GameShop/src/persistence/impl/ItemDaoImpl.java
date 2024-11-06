@@ -103,6 +103,7 @@ public class ItemDaoImpl implements ItemDao {
         return items;
     }
 
+
     public Item resultSetToItem(ResultSet resultSet) throws SQLException {
         Item item=new Item();
         item.setId(resultSet.getInt("id"));
@@ -116,6 +117,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     //Dongenqie
+    @Override
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<>();
         // JDBC code to fetch items from database
@@ -148,6 +150,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     // 插入商品
+    @Override
     public void insertItem(Item item) {
         String sql = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
         try {
@@ -166,6 +169,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     // 删除商品
+    @Override
     public void deleteItem(int itemId) {
         String sql = "DELETE FROM item WHERE id = ?";
         try {

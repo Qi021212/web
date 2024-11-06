@@ -16,7 +16,7 @@
         <li class="header"><a href="mainForm">商店</a></li>
         <li class="header"><a href="">购物车</a></li>
         <li class="header"><a href="">订单</a></li>
-        <li class="header"><a href="">个人信息</a></li>
+        <li class="header"><a href="userinfo">个人信息</a></li>
     </ul>
 </div>
 
