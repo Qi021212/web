@@ -2,6 +2,7 @@ package persistence;
 
 import domain.User;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public interface UserDao {
@@ -13,5 +14,12 @@ public interface UserDao {
 
     public boolean insertUser(User user);
 
-    public  boolean findUserByName(String username);
+    private User resultSetToUser(ResultSet resultSet) throws Exception {
+        User user = new User();
+        user.setId(resultSet.getInt("id"));
+        user.setUsername(resultSet.getString("username"));
+        user.setPassword(resultSet.getString("password"));
+        user.setEmail(resultSet.getString("email"));
+        return user;
+    }
 }

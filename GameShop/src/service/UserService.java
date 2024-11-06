@@ -45,5 +45,4 @@ public class UserService {
     public User findUserById(int id){
         return this.userDao.findUserById(id);
     }
-
 }
