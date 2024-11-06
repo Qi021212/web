@@ -14,6 +14,7 @@ public interface UserDao {
 
     public boolean insertUser(User user);
 
-    boolean findUserByName(String username);
+    public boolean findUserByName(String username);
+    public boolean updateUsernameAndPassword(int id, String username, String password);
 
 }

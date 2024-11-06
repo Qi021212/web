@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>${message}</h1>
-<a href="items">继续浏览商品</a>
+<a href="mainForm">继续浏览商品</a>
 <a href="cart">查看购物车</a>
 </body>
 </html>

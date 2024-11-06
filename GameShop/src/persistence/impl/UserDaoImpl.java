@@ -15,6 +15,7 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_USER_BY_USERNAME = "SELECT * FROM user WHERE username = ? ";
     private static final String FIND_USER_BY_USERNAME_AND_PASSWORD = "SELECT * FROM user WHERE username = ? AND password = ?";
     private static final String FIND_ALL_USERS = "SELECT * FROM user";
+    private static final String UPDATE_USERNAME_AND_PASSWORD = "UPDATE user SET username = ? , password=? WHERE id=?";
 
     public List<User> findAllUsers() {
         List<User> userList = new ArrayList<User>();
@@ -122,6 +123,26 @@ public class UserDaoImpl implements UserDao {
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
         return user;
+    }
+    @Override
+    public boolean updateUsernameAndPassword(int id, String username, String password) {
+        boolean result = false;
+        try{
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERNAME_AND_PASSWORD);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, id);
+            int rows = preparedStatement.executeUpdate();
+            if(rows == 1) {
+                result = true;
+            }
+            DBUtil.closePreparedStatement(preparedStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 

@@ -24,6 +24,7 @@ public class UserInfoServlet extends HttpServlet {
         UserService userService = new UserService();
         this.id = loginUser.getId();
         session.setAttribute("userInfo", userService.findUserById(id));
+        session.setAttribute("loginUser", loginUser);
         req.getRequestDispatcher(USER_INFO).forward(req,resp);
     }
 

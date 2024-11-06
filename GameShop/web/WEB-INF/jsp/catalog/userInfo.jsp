@@ -20,7 +20,7 @@
                     <td><c:out value="${sessionScope.userInfo.email}" /></td>
                 </tr>
                 <tr>
-                    <td colspan="3"><a href=""><input type="button" value="编辑信息" class="editBtn"></a></td>
+                    <td colspan="3"><a href="updateForm"><input type="button" value="编辑信息" class="editBtn"></a></td>
 
                 </tr>
 
