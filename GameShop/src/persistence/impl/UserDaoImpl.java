@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
-    @Override
+
     public boolean findUserByName(String username) {
         boolean result = false;
         try {

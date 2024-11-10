@@ -5,38 +5,37 @@
 <html>
 <head>
 	<title>我的订单</title>
-<%--	<meta name="viewport" content="width=device-width, initial-scale=1">--%>
-<%--	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">--%>
 </head>
 <body>
 
 	<!--cart-items-->
 	<div class="cart-items">
 		<div class="container">
-
 			<h2>我的订单</h2>
-			
 				<table class="table table-bordered table-hover">
-
 				<tr>
-					<th width="10%">ID</th>
-					<th width="10%">总价</th>
+					<th width="10%">订单编号</th>
+					<th width="10%">下单时间</th>
 					<th width="20%">商品详情</th>
 					<th width="30%">收货信息</th>
 					<th width="10%">订单状态</th>
 					<th width="10%">支付方式</th>
-					<th width="10%">下单时间</th>
+					<th width="10%">总价</th>
 				</tr>
+					<!--订单列表-->
 					<c:forEach items="${orderList }" var="order">
-
 						<tr>
 							<td><p>${order.id }</p></td>
-							<td><p>${order.total }</p></td>
+							<td><p>${order.datetime }</p></td>
 							<td>
+								<!--对应订单项列表（商品详情列）-->
 								<c:forEach items="${order.itemList }" var="item">
-									<p>${item.goodsName }(${item.price }) x ${item.amount }</p>
+<%--									<p>${item.itemName }(${item.price })</p>--%>
+									<p>
+										<a href="OrderItemInformationServlet?itemId=${item.itemId}">${item.itemName}</a> (¥${item.price})
+									</p>
 								</c:forEach>
-
+								<!--对应订单项列表（商品详情列）-->
 							</td>
 							<td>
 								<p>${order.name }</p>
@@ -52,20 +51,17 @@
 							</td>
 							<td>
 								<p>
-
 									<c:if test="${order.paytype==1 }">微信</c:if>
 									<c:if test="${order.paytype==2 }">支付宝</c:if>
 									<c:if test="${order.paytype==3 }">货到付款</c:if>
-
 								</p>
 							</td>
-							<td><p>${order.datetime }</p></td>
+							<td><p>${order.total }</p></td>
 						</tr>
 
 					</c:forEach>
-
+					<!--订单列表-->
 				</table>
-			
 		</div>
 	</div>
 	<!--//cart-items-->
@@ -76,20 +72,3 @@
 	</jsp:include>
 </body>
 </html>
-
-<%--<link type="text/css" rel="stylesheet" href="css/bootstrap.css">--%>
-<%--<link type="text/css" rel="stylesheet" href="css/style.css">--%>
-<%--<script type="text/javascript" src="js/jquery.min.js"></script>--%>
-<%--<script type="text/javascript" src="js/bootstrap.min.js"></script>--%>
-<%--<script type="text/javascript" src="layer/layer.js"></script>--%>
-<%--<script type="text/javascript" src="js/cart.js"></script>--%>
-
-<%--<!--header-->--%>
-<%--<jsp:include page="header.jsp">--%>
-<%--	<jsp:param name="flag" value="5"></jsp:param>--%>
-<%--</jsp:include>--%>
-<%--<!--//header-->--%>
-
-<%--	<!--footer-->--%>
-<%--	<jsp:include page="footer.jsp"></jsp:include>--%>
-<%--	<!--//footer-->--%>

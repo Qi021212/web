@@ -14,10 +14,11 @@ public class Order {
     private int paytype;//1微信/2支付宝/3货到付款
     private int status;//1未付款/2已付款/3已发货/4已完成
     private Date datetime;
+    private List<OrderItem> itemList;
 
     private User user;
 //    private Map<Integer,OrderItem> itemMap = new HashMap<Integer,OrderItem>();
-    private List<OrderItem> itemList = new ArrayList<OrderItem>();
+//    private List<OrderItem> itemList = new ArrayList<OrderItem>();
 
     public Order() { }
     public Order(int id){
@@ -55,53 +56,6 @@ public class Order {
         user = new User();
         user.setUsername(username);
     }
-//    public void addGoods(Item g) {
-//        if(itemMap.containsKey(g.getId())) {
-//            OrderItem item = itemMap.get(g.getId());
-//            item.setAmount(item.getAmount()+1);
-//        }else {
-//            OrderItem item = new OrderItem(g.getPrice(),1,g,this);
-//            itemMap.put(g.getId(), item);
-//        }
-//        amount++;
-//        total = PriceUtils.add(total, g.getPrice());
-//    }
-
-//    public List<OrderItem> getItemList() {
-//        return itemList;
-//    }
-//
-//    public void setItemList(List<OrderItem> itemList) {
-//        this.itemList = itemList;
-//    }
-
-//    public void lessen(int itemId) {
-//        if(itemMap.containsKey(itemId)) {
-//            OrderItem item = itemMap.get(itemId);
-//            item.setAmount(item.getAmount()-1);
-//            amount--;
-//            total = PriceUtils.subtract(total, item.getPrice());
-//            if(item.getAmount()<=0) {
-//                itemMap.remove(itemId);
-//            }
-//        }
-//    }
-//    public void delete(int itemId) {
-//        if(itemMap.containsKey(itemId)) {
-//            OrderItem item = itemMap.get(itemId);
-//            total = PriceUtils.subtract(total, item.getAmount()*item.getPrice());
-//            amount-=item.getAmount();
-//            itemMap.remove(itemId);
-//        }
-//    }
-
-//    public Map<Integer, OrderItem> getItemMap() {
-//        return itemMap;
-//    }
-//
-//    public void setItemMap(Map<Integer, OrderItem> itemMap) {
-//        this.itemMap = itemMap;
-//    }
 
     public int getId() {
         return id;

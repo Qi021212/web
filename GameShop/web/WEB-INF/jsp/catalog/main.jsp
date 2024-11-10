@@ -65,9 +65,4 @@
     </table>
 </div>
 
-
-
-
-
-
 <%@ include file="../common/bottom.jsp"%>

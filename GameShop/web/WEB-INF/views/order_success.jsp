@@ -19,7 +19,7 @@
 
 <%--			<p><a class="btn btn-success" href="/order_list">查看我的订单</a></p>--%>
 			<p>
-				<a href="<c:url value='/order_list?userId=1'/>">查看我的订单</a>
+				<a href="<c:url value='/order_list'/>">查看我的订单</a>
 			</p>
 		</div>
 	</div>

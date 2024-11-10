@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "loginFormServlet", urlPatterns = {"/loginForm"})
-
 public class LoginFormServlet extends HttpServlet {
     public static final String LOGIN_FORM = "/WEB-INF/jsp/catalog/login.jsp";
 

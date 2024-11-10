@@ -94,5 +94,14 @@
         <servlet-name>OrderListServlet</servlet-name>
         <url-pattern>/order_list</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderItemInformationServlet</servlet-name>
+        <servlet-class>servlet.OrderItemInformationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderItemInformationServlet</servlet-name>
+        <url-pattern>/OrderItemInformationServlet</url-pattern>
+    </servlet-mapping>
     <!--/dongenqie-->
 </web-app>

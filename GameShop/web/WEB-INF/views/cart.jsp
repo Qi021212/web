@@ -1,45 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 86191
-  Date: 2024/10/29
-  Time: 8:51
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ page import="java.util.List" %>--%>
-<%--<%@ page import="domain.Cart" %>--%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-
-<%--<html>--%>
-<%--<head>--%>
-<%--  <title>购物车</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<h1>购物车</h1>--%>
-<%--<table>--%>
-<%--  <tr>--%>
-<%--    <th>商品ID</th>--%>
-<%--    <th>数量</th>--%>
-<%--    <th>价格</th>--%>
-<%--    <th>总价</th>--%>
-<%--  </tr>--%>
-<%--  <c:if test="${empty cartItems}">--%>
-<%--    <tr>--%>
-<%--      <td colspan="4">购物车为空。</td>--%>
-<%--    </tr>--%>
-<%--  </c:if>--%>
-<%--  <c:forEach var="cartItem" items="${cartItems}">--%>
-<%--    <tr>--%>
-<%--      <td>${cartItem.itemId}</td>--%>
-<%--      <td>${cartItem.quantity}</td>--%>
-<%--      <td>${cartItem.price}</td>--%>
-<%--      <td>${cartItem.amount}</td>--%>
-<%--    </tr>--%>
-<%--  </c:forEach>--%>
-<%--</table>--%>
-<%--<a href="items">继续浏览商品</a>--%>
-<%--</body>--%>
-<%--</html>--%>
 <%@ include file="../jsp/common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -105,14 +63,4 @@
 </body>
 </html>
 
-<%--  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">--%>
-<%--  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">--%>
-
-<!-- 确保 jQuery 在其他脚本之前加载 -->
-<%--  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>--%>
-<%--  <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>--%>
-<%--  <script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>--%>
-<%--  <script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>--%>
-
-<%--<jsp:include page="footer.jsp"></jsp:include>--%>
 

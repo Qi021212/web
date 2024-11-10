@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import persistence.CartDAO;
 import service.ExistingGameService;
 import service.OrderService;
@@ -23,14 +24,22 @@ public class OrderConfirmServlet extends HttpServlet {
     private ExistingGameService existingGameService = new ExistingGameService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 从请求中获取 userId
-        int userId = Integer.parseInt(request.getParameter("userId"));
+//        // 从请求中获取 userId
+//        int userId = Integer.parseInt(request.getParameter("userId"));
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            response.sendRedirect("loginForm");
+            return;
+        }
 
         // 根据 userId 获取用户信息
         User user = userService.findUserById(userId);
 
         //创建订单对象
         Order o = new Order();
+        o.setUserId(userId);
         o.setUser(user);
         o.setDatetime(new Date());
         o.setStatus(2);// 状态：1-待支付，2-已支付等
@@ -49,8 +58,6 @@ public class OrderConfirmServlet extends HttpServlet {
         String[] itemIds = request.getParameterValues("itemIds");
 
 
-
-
         if (itemIds != null) {
             for (int i = 0; i < itemIds.length; i++) {
                 int itemId = Integer.parseInt(itemIds[i]);
@@ -59,6 +66,8 @@ public class OrderConfirmServlet extends HttpServlet {
                 Item item = oService.getItemById(itemId); // 假设您有这个方法来获取 Item
                 if (item != null) {
                     OrderItem orderItem = new OrderItem(itemId, item, item.getPrice(), o);
+
+                    orderItem.setOrderId(orderId);
 
                     // 保存订单项
                     oService.addOrderItem(orderItem);

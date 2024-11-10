@@ -72,6 +72,7 @@ public class OrderItem {
     private Item item;
     private double price;
     private int amount;
+    private String itemName;
 
     public OrderItem() {}
 
@@ -143,6 +144,14 @@ public class OrderItem {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 }
 

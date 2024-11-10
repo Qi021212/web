@@ -15,7 +15,7 @@
         <h2>订单确认</h2>
 <%--        <form class="form-horizontal" action="/order_confirm" method="post" id="payform">--%>
         <form action="${pageContext.request.contextPath}/order_confirm" method="post">
-            <input type="hidden" name="userId" value="1">
+<%--            <input type="hidden" name="userId" value="1">--%>
             <input type="hidden" name="totalAmount" value="${totalAmount}"> <!-- 确保有总金额 -->
             <c:forEach var="itemId" items="${itemIds}">
                 <input type="hidden" name="itemIds" value="${itemId}">
