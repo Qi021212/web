@@ -56,7 +56,6 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
-
     public User findUserById(int id) {
         User result = null;
         try{

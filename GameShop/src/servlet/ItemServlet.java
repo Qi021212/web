@@ -27,7 +27,6 @@ public class ItemServlet extends HttpServlet {
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
-        //double price = 0.0; // 从 item 获取价格（这里假设是固定的，可以从 items 获取）
         double amount = price * quantity; // 计算总金额
 
         // 假设当前用户的 userId 为 1（你可以根据实际情况动态获取）

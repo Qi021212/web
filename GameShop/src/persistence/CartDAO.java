@@ -17,7 +17,6 @@ public class CartDAO {
 
         try {
             Connection conn = DBUtil.getConnection();
-            // Check if the item already exists in the cart
             PreparedStatement checkStmt = conn.prepareStatement(checkSql);
             checkStmt.setInt(1, cart.getUserId());
             checkStmt.setInt(2, cart.getItemId());
@@ -26,12 +25,9 @@ public class CartDAO {
             if (rs.next()) {
                 System.out.println("您已添加该商品进购物车,请勿重复添加");
             } else {
-                // If not, insert new item
                 PreparedStatement insertStmt = conn.prepareStatement(insertSql);
                 insertStmt.setInt(1, cart.getUserId());
                 insertStmt.setInt(2, cart.getItemId());
-//                insertStmt.setInt(3, cart.getQuantity());
-//                insertStmt.setDouble(4, cart.getAmount());
                 insertStmt.setDouble(3, cart.getPrice());
                 insertStmt.executeUpdate();
             }
@@ -91,7 +87,6 @@ public class CartDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return cartItems;
     }
 
@@ -139,8 +134,6 @@ public class CartDAO {
 
             preparedStatement.setInt(1, cart.getUserId());
             preparedStatement.setInt(2, cart.getItemId());
-//            preparedStatement.setInt(3, cart.getQuantity());
-//            preparedStatement.setDouble(4, cart.getAmount());
             preparedStatement.setDouble(3, cart.getPrice());
             result = preparedStatement.executeUpdate();
 

@@ -60,6 +60,11 @@ public class OrderService {
         }
     }
 
+    // 获取订单项列表
+    public List<OrderItem> getOrderItemsByOrderId(int orderId) {
+        return oDao.getOrderItemsByOrderId(orderId);
+    }
+
     public List<Order> selectAll(int userId) {
         return oDao.findOrdersByUserId(userId);
     }

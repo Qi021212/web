@@ -15,9 +15,6 @@ public class ItemDaoImpl implements ItemDao {
     private static final String SEARCH_ITEM_LIST="select * from item where name like? or type like?";
     private static final String GET_ITEM_BY_PICTURE_SRC="select * from item where picture=?";
 
-
-
-
     @Override
     public List<Item> getItemByCategory(String categoryId) {
         List<Item> items=new ArrayList<Item>();
@@ -116,23 +113,17 @@ public class ItemDaoImpl implements ItemDao {
         return item;
     }
 
-    //Dongenqie
     @Override
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<>();
-        // JDBC code to fetch items from database
-        // Use DBUtil for getting connection
         String sql = "SELECT * FROM item";
         try {
             Connection connection = DBUtil.getConnection();
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery(sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Item item = new Item();
-//                Item item = this.resultSetToItem(resultSet);
                 item.setId(resultSet.getInt("id"));
                 item.setName(resultSet.getString("name"));
                 item.setPrice(resultSet.getDouble("price"));
@@ -141,7 +132,6 @@ public class ItemDaoImpl implements ItemDao {
             }
             DBUtil.closeResultSet(resultSet);
             DBUtil.closePreparedStatement(preparedStatement);
-//            DBUtil.closeStatement(statement);
             DBUtil.closeConnection(connection);
         } catch (Exception e) {
             e.printStackTrace();

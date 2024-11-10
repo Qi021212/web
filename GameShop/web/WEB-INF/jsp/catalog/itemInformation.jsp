@@ -18,12 +18,18 @@
             <tr class="description">
                 <td class="description">${item.description}</td>
             </tr>
-            <tr class="buy">
-                <td class="buy">¥ ${item.price}         <input type="submit" value="添加到购物车" class="addBtn" formaction=" "></td>
+            <tr class="add">
+                <td class="add">¥ ${item.price}</td>
+                <td>
+                    <form action="addToCart" method="POST">
+                        <input type="hidden" name="itemId" value="${item.id}" />
+                        <input type="hidden" name="price" value="${item.price}" />
+                        <input type="submit" value="添加到购物车" class="addBtn"/>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>
 </div>
-
 
 <%@ include file="../common/bottom.jsp"%>

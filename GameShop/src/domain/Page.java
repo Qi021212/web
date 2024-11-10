@@ -10,7 +10,6 @@ public class Page {
 
     private List<Order> list;
 
-
     public void SetPageSizeAndTotalCount(int pageSize,int totalCount)
     {
         this.pageSize=pageSize;

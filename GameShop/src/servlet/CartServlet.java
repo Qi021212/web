@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import persistence.CartDAO;
 import service.CartService;
 import service.UserService;
@@ -14,12 +15,19 @@ import java.io.IOException;
 import java.util.List;
 
 public class CartServlet extends HttpServlet {
-    private static final int HARD_CODED_USER_ID = 1; // 硬编码的用户 ID
     CartService cartService = new CartService();
     UserService userService = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            response.sendRedirect("loginForm");
+            return;
+        }
+
         String action = request.getParameter("action");
         String itemIdStr = request.getParameter("itemId");
 
@@ -29,9 +37,6 @@ public class CartServlet extends HttpServlet {
         }
 
         int itemId = Integer.parseInt(itemIdStr);
-
-//        int itemId = Integer.parseInt(request.getParameter("itemId"));
-        int userId = HARD_CODED_USER_ID; // 需要替换为实际用户ID
 
         switch (action) {
             case "delete":
@@ -79,8 +84,16 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            response.sendRedirect("loginForm");
+            return;
+        }
+
         // 获取用户的购物车商品信息
-        List<Cart> cartItems = cartService.getCartItemsByUserId(HARD_CODED_USER_ID); // 获取购物车商品
+        List<Cart> cartItems = cartService.getCartItemsByUserId(userId); // 获取购物车商品
 
         // 计算总金额
         double totalAmount = 0;
@@ -91,24 +104,6 @@ public class CartServlet extends HttpServlet {
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("totalAmount", totalAmount); // 将总金额传递到 JSP
         request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
-    }
-
-    // 更新购物车商品数量
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int itemId = Integer.parseInt(request.getParameter("itemId"));
-
-        // 更新后重定向到购物车页面
-        response.sendRedirect("cart");
-    }
-
-    // 删除购物车中的商品
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int itemId = Integer.parseInt(request.getParameter("itemId"));
-
-        cartService.deleteCartItem(HARD_CODED_USER_ID, itemId);
-
-        // 删除后重定向到购物车页面
-        response.sendRedirect("cart");
     }
 }
 

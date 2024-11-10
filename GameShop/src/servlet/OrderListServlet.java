@@ -2,11 +2,13 @@ package servlet;
 
 import domain.ExistingGame;
 import domain.Order;
+import domain.OrderItem;
 import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import service.ExistingGameService;
 import service.OrderService;
 import service.UserService;
@@ -24,14 +26,24 @@ public class OrderListServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 从请求中获取 userId
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            response.sendRedirect("loginForm");
+            return;
+        }
 
         // 根据 userId 获取用户信息
         User user = userService.findUserById(userId);
 
         // 获取用户的所有订单
         List<Order> orderList = oService.selectAll(1);
+        // 为每个订单加载对应的订单项
+        for (Order order : orderList) {
+            List<OrderItem> orderItems = oService.getOrderItemsByOrderId(order.getId());
+            order.setItemList(orderItems);  // 将订单项列表设置到订单中
+        }
         request.setAttribute("orderList", orderList);
 
         // 获取用户的已有游戏列表

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CartService {
     CartDAO cartDao = new CartDAO();
-    ItemDao itemDAO = new ItemDaoImpl();    // 用来获取 item 的信息
+    ItemDao itemDAO = new ItemDaoImpl();
 
     // 添加到购物车或更新数量
     public void addToCart(Cart cart) {
@@ -29,7 +29,6 @@ public class CartService {
 
     // 获取用户购物车中的商品
     public List<Cart> getCartItemsByUserId(int userId) {
-//        return cartDao.getCartItemsByUserId(userId); // 根据用户 ID 获取购物车商品
         List<Cart> cartItems = cartDao.getCartItemsByUserId(userId); // 获取购物车商品
         for (Cart cartItem : cartItems) {
             Item item = itemDAO.getItemById(cartItem.getItemId()); // 获取商品的详细信息

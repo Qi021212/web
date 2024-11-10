@@ -13,7 +13,7 @@ public class OrderDAO {
     //插入订单
     public int insertOrder(Order order) {
         String sql = "INSERT INTO orders (user_id, total, name, phone, email, paytype, status, datetime) " +
-                "VALUES (?, ?, ?, ?, ?, ?, 0, NOW())";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             Connection conn = DBUtil.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -24,16 +24,8 @@ public class OrderDAO {
             pstmt.setString(4, order.getPhone());
             pstmt.setString(5, order.getEmail());
             pstmt.setInt(6, order.getPaytype());
-
-//            pstmt.setInt(1, order.getUser().getId());
-//            pstmt.setDouble(2, order.getTotal());
-//            pstmt.setInt(3, order.getAmount());
-//            pstmt.setInt(4, order.getStatus());
-//            pstmt.setInt(5, order.getPaytype());
-//            pstmt.setString(6, order.getName());
-//            pstmt.setString(7, order.getPhone());
-//            pstmt.setString(8, order.getAddress());
-//            pstmt.setTimestamp(9, new Timestamp(order.getDatetime().getTime()));
+            pstmt.setInt(7, order.getStatus());
+            pstmt.setTimestamp(8, new Timestamp(order.getDatetime().getTime()));
 
             pstmt.executeUpdate();
 
@@ -277,5 +269,36 @@ public class OrderDAO {
             e.printStackTrace();
         }
         return orders;
+    }
+
+    // 获取指定订单的订单项列表
+    public List<OrderItem> getOrderItemsByOrderId(int orderId) {
+        List<OrderItem> orderItems = new ArrayList<>();
+        String sql = "SELECT oi.id, oi.order_id, oi.item_id, oi.price, i.name AS item_name " +
+                "FROM order_items oi JOIN item i ON oi.item_id = i.id WHERE oi.order_id = ?";
+
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, orderId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.setId(rs.getInt("id"));
+                orderItem.setOrderId(rs.getInt("order_id"));
+                orderItem.setItemId(rs.getInt("item_id"));
+                orderItem.setPrice(rs.getDouble("price"));
+                orderItem.setItemName(rs.getString("item_name")); // 需要在 OrderItem 类中添加 itemName 字段
+                orderItems.add(orderItem);
+            }
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(stmt);
+            DBUtil.closeConnection(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderItems;
     }
 }

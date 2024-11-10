@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
             if (loginUser != null) {
                 if (userCaptcha != null && userCaptcha.equalsIgnoreCase(sessionCaptcha)) {
                     HttpSession session = req.getSession();
+                    session.setAttribute("userId", loginUser.getId()); // 将用户ID存入会话
                     session.setAttribute("loginUser", loginUser);
                     resp.sendRedirect("mainForm");
                 } else {

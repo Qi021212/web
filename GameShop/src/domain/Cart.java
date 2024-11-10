@@ -23,16 +23,12 @@ public class Cart {
         this.id = id;
         this.userId = userId;
         this.itemId = itemId;
-//        this.quantity = quantity;
-//        this.amount = amount;
         this.price = price;
     }
 
     public Cart(int userId, int itemId, int quantity, double amount, double price) {
         this.userId = userId;
         this.itemId = itemId;
-//        this.quantity = quantity;
-//        this.amount = amount;
         this.price = price;
     }
 
@@ -88,22 +84,6 @@ public class Cart {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-
-    //    public int getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
-//
-//    public double getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(double amount) {
-//        this.amount = amount;
-//    }
 
     public double getPrice() {
         return price;

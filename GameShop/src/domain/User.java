@@ -16,7 +16,6 @@ public class User {
         this.email = email;
     }
 
-    //dongenqie
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
