@@ -38,7 +38,7 @@ public class OrderListServlet extends HttpServlet {
         User user = userService.findUserById(userId);
 
         // 获取用户的所有订单
-        List<Order> orderList = oService.selectAll(1);
+        List<Order> orderList = oService.selectAll(userId);
         // 为每个订单加载对应的订单项
         for (Order order : orderList) {
             List<OrderItem> orderItems = oService.getOrderItemsByOrderId(order.getId());

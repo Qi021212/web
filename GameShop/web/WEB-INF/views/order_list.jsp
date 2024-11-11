@@ -1,3 +1,4 @@
+<%@ include file="../jsp/common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -11,35 +12,35 @@
 <!--cart-items-->
 <div class="cart-items">
 	<div class="container">
-		<h2>我的订单</h2>
+		<h2 class="order">我的订单</h2>
 		<table class="table table-bordered table-hover">
-			<tr>
-				<th width="10%">订单编号</th>
-				<th width="10%">下单时间</th>
-				<th width="20%">商品详情</th>
-				<th width="30%">收货信息</th>
-				<th width="10%">订单状态</th>
-				<th width="10%">支付方式</th>
-				<th width="10%">总价</th>
+			<tr class="order">
+				<th>订单编号</th>
+				<th>下单时间</th>
+				<th>商品详情</th>
+				<th>收货信息</th>
+				<th>订单状态</th>
+				<th>支付方式</th>
+				<th>总价</th>
 			</tr>
 			<!--订单列表-->
 			<c:forEach items="${orderList }" var="order">
-				<tr>
+				<tr class="order">
 					<td><p>${order.id }</p></td>
 					<td><p>${order.datetime }</p></td>
 					<td>
 						<!--对应订单项列表（商品详情列）-->
 						<c:forEach items="${order.itemList }" var="item">
 							<p>
-								<a href="OrderItemInformationServlet?itemId=${item.itemId}">${item.itemName}</a> (¥${item.price})
+								<a href="OrderItemInformationServlet?itemId=${item.itemId}" style="color: #f3f3f3">${item.itemName}</a> (¥${item.price})
 							</p>
 						</c:forEach>
 						<!--对应订单项列表（商品详情列）-->
 					</td>
 					<td>
-						<p>${order.name }</p>
-						<p>${order.phone }</p>
-						<p>${order.email }</p>
+						<p>姓名：${order.name }</p>
+						<p>电话：${order.phone }</p>
+						<p>邮箱：${order.email }</p>
 					</td>
 					<td>
 						<p>

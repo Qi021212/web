@@ -17,6 +17,7 @@
         <li class="header"><a href="cart">购物车</a></li>
         <li class="header"><a href="order_list">订单</a></li>
         <li class="header"><a href="userinfo">个人信息</a></li>
+        <li class="header"><a href="actionForm">日志</a></li>
     </ul>
 </div>
 

@@ -3,14 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-  <title>购物车</title>
-</head>
-<body>
-<div class="container">
-  <h2>我的购物车</h2>
+<div>
+  <h2 class="cart">我的购物车</h2>
   <div>
-    <table>
+    <table class="cart">
       <thead>
       <tr>
         <th>商品名称</th>
@@ -28,13 +24,13 @@
       <c:forEach var="cartItem" items="${cartItems}">
         <tr>
           <td>${cartItem.item.name}</td>
-          <td><img src="${cartItem.item.picture}" alt="${cartItem.item.name}" width="100" height="100"></td>
+          <td><img src="${cartItem.item.picture}" alt="${cartItem.item.name}" width="200" height="120"></td>
           <td>¥ ${cartItem.price}</td>
           <td>
             <form action="cart" method="post">
               <input type="hidden" name="action" value="delete">
               <input type="hidden" name="itemId" value="${cartItem.item.id}">
-              <button type="submit">删除</button>
+              <button type="submit" class="cartDelete">删除</button>
             </form>
           </td>
         </tr>
@@ -43,7 +39,7 @@
     </table>
     <div>
       <hr>
-      <h3>总金额: ¥ ${totalAmount}</h3>
+      <h3 class="cart">总金额: ¥ ${totalAmount}</h3>
 
       <form id="submitOrderForm" action="${pageContext.request.contextPath}/order_submit" method="post">
         <input type="hidden" name="action" value="submitOrder">
