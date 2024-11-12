@@ -272,6 +272,7 @@ h3.cart{
     padding: 5px 10px;
     border-radius: 4px;
     margin-left: 10px;
+    margin-top: 10px;
 }
 /*order_list*/
 h2.order{
@@ -291,5 +292,33 @@ h2.order{
 .container table{
     border-bottom: 1px solid #ffffff;
     margin-left: 10px;
+}
+/*action*/
+h1.actionList{
+    margin-top:100px;
+    margin-left: 10px;
+}
+.actionList th{
+    font-size: 20px;
+    color: #a5bec3;
+    margin-left: 10px;
+}
+.actionList td{
+    text-align: center;
+    padding:10px 10px;
+    text-decoration: none;
+}
+table.actionList{
+    border-bottom: 1px solid #ffffff;
+    margin-left: 10px;
+}
+.btn-return{
+    background-color: #6ca520;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 

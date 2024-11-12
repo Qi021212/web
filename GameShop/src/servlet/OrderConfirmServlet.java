@@ -1,9 +1,6 @@
 package servlet;
 
-import domain.Item;
-import domain.Order;
-import domain.OrderItem;
-import domain.User;
+import domain.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import persistence.CartDAO;
 import service.ExistingGameService;
+import service.ItemService;
 import service.OrderService;
 import service.UserService;
 
@@ -73,6 +71,18 @@ public class OrderConfirmServlet extends HttpServlet {
                 }
             }
         }
+
+        //添加日志功能
+        Action action = new Action();
+        ItemService itemService = new ItemService();
+        int itemId = Integer.parseInt(itemIds[0]);
+        Item item = itemService.getItemById(itemId);
+        String itemName = item.getName();
+        action.setUserId(userId);
+        action.setItemName(itemName);
+        action.setType("生成订单");
+        session.setAttribute("userAction", action);
+
         // 清空购物车：删除用户所有购物车项
         cartDAO.deleteAllItemsByUserId(userId);
 

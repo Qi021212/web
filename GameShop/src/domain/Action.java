@@ -1,17 +1,23 @@
-package filter;
+package domain;
+
+import java.util.Date;
 
 public class Action {
     private int userId;
-    private int itemId;
+    private String itemName;
     private String type;
+
 
     public Action() {
     }
 
-    public Action(int userId, int itemId, String type) {
+
+
+    public Action(int userId, String itemName, String type) {
         this.userId = userId;
-        this.itemId = itemId;
+        this.itemName = itemName;
         this.type = type;
+
     }
 
     public int getUserId() {
@@ -22,12 +28,12 @@ public class Action {
         this.userId = userId;
     }
 
-    public int getItemId() {
-        return itemId;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getType() {
@@ -37,4 +43,6 @@ public class Action {
     public void setType(String type) {
         this.type = type;
     }
+
+
 }

@@ -103,5 +103,23 @@
         <servlet-name>OrderItemInformationServlet</servlet-name>
         <url-pattern>/OrderItemInformationServlet</url-pattern>
     </servlet-mapping>
-    <!--/dongenqie-->
+
+    <filter>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>ActionFormServlet</servlet-name>
+        <servlet-class>servlet.ActionFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionFormServlet</servlet-name>
+        <url-pattern>/actionForm</url-pattern>
+    </servlet-mapping>
+
 </web-app>

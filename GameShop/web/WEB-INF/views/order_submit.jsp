@@ -35,7 +35,7 @@
             <h2>商品列表</h2>
             <c:forEach var="item" items="${cartItems}">
                 <div>
-                    <p>商品名称: ${item.name}    价格:¥ ${item.price}</p>
+                    <p>商品名称: ${item.item.name}    价格:¥ ${item.price}</p>
 
                     <input type="hidden" name="itemIds[]" value="${item.id}">
                 </div>
