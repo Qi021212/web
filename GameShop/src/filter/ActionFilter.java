@@ -2,15 +2,13 @@ package filter;
 
 import domain.Action;
 import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import service.ActionService;
 
 import java.io.IOException;
 
-public class AuthenticationFilter implements Filter {
+public class ActionFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
