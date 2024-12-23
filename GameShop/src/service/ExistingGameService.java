@@ -1,12 +1,12 @@
 package service;
 
 import domain.ExistingGame;
-import persistence.ExistingGameDAO;
+import persistence.impl.ExistingGameDAOImpl;
 
 import java.util.List;
 
 public class ExistingGameService {
-    private ExistingGameDAO existingGameDAO = new ExistingGameDAO();
+    private ExistingGameDAOImpl existingGameDAO = new ExistingGameDAOImpl();
 
     // 检查游戏是否已经存在
     public boolean isGameAlreadyExist(int userId, int itemId) {

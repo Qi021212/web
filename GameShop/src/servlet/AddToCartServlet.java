@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import persistence.CartDAO;
+import persistence.impl.CartDAOImpl;
 import service.ItemService;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class AddToCartServlet extends HttpServlet {
 
         // 创建购物车对象并保存
         Cart cart = new Cart(userId, itemId, price);
-        CartDAO cartDAO = new CartDAO();
+        CartDAOImpl cartDAO = new CartDAOImpl();
         cartDAO.addToCart(cart);
 
         //日志功能

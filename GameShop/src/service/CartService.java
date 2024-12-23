@@ -2,14 +2,14 @@ package service;
 
 import domain.Cart;
 import domain.Item;
-import persistence.CartDAO;
+import persistence.impl.CartDAOImpl;
 import persistence.ItemDao;
 import persistence.impl.ItemDaoImpl;
 
 import java.util.List;
 
 public class CartService {
-    CartDAO cartDao = new CartDAO();
+    CartDAOImpl cartDao = new CartDAOImpl();
     ItemDao itemDAO = new ItemDaoImpl();
 
     // 添加到购物车或更新数量

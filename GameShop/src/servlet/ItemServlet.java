@@ -1,17 +1,13 @@
 package servlet;
 
 import domain.Cart;
-import domain.Item;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import persistence.CartDAO;
-import persistence.ItemDao;
-import persistence.impl.ItemDaoImpl;
+import persistence.impl.CartDAOImpl;
 
 import java.io.IOException;
-import java.util.List;
 
 public class ItemServlet extends HttpServlet {
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +30,7 @@ public class ItemServlet extends HttpServlet {
 
         // 创建购物车对象并添加到数据库
         Cart cart = new Cart(userId, itemId, quantity, amount, price);
-        CartDAO cartDAO = new CartDAO();
+        CartDAOImpl cartDAO = new CartDAOImpl();
         cartDAO.addToCart(cart);
 
         // 返回成功的响应

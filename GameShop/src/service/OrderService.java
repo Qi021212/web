@@ -3,8 +3,8 @@ package service;
 import domain.Item;
 import domain.Order;
 import domain.OrderItem;
-import persistence.CartDAO;
-import persistence.OrderDAO;
+import persistence.impl.CartDAOImpl;
+import persistence.impl.OrderDAOImpl;
 import utils.DBUtil;
 
 import java.sql.Connection;
@@ -13,8 +13,8 @@ import java.sql.ResultSet;
 import java.util.List;
 
 public class OrderService {
-    private OrderDAO oDao = new OrderDAO();
-    CartDAO cartDao = new CartDAO();
+    private OrderDAOImpl oDao = new OrderDAOImpl();
+    CartDAOImpl cartDao = new CartDAOImpl();
 
     // 获取商品信息的方法
     public Item getItemById(int itemId) {

@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import persistence.CartDAO;
+import persistence.impl.CartDAOImpl;
 import service.ExistingGameService;
 import service.ItemService;
 import service.OrderService;
@@ -18,7 +18,7 @@ import java.util.Date;
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
     private UserService userService = new UserService(); // 假设你有 UserService 来获取用户信息
-    private CartDAO cartDAO = new CartDAO();
+    private CartDAOImpl cartDAO = new CartDAOImpl();
     private ExistingGameService existingGameService = new ExistingGameService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

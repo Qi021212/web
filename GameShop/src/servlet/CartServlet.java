@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import persistence.CartDAO;
+import persistence.impl.CartDAOImpl;
 import service.CartService;
 import service.UserService;
 
@@ -70,7 +70,7 @@ public class CartServlet extends HttpServlet {
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
                 double price = Double.parseDouble(request.getParameter("price"));
                 Cart cart = new Cart(userId, itemId, quantity, price * quantity, price);
-                CartDAO cartDAO = new CartDAO();
+                CartDAOImpl cartDAO = new CartDAOImpl();
                 int result = cartDAO.insertCart(cart);
                 if (result > 0) {
                     response.sendRedirect("cartSuccess.jsp");
