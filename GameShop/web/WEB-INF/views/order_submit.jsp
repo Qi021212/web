@@ -34,11 +34,16 @@
 
             <h2>商品列表</h2>
             <c:forEach var="item" items="${cartItems}">
-                <div>
-                    <p>商品名称: ${item.item.name}    价格:¥ ${item.price}</p>
-
-                    <input type="hidden" name="itemIds[]" value="${item.id}">
-                </div>
+<%--                <div>--%>
+<%--                    <p>商品名称: ${item.item.name}    价格:¥ ${item.price}</p>--%>
+<%--                    <input type="hidden" name="itemIds[]" value="${item.id}">--%>
+<%--                </div>--%>
+                <c:if test="${item.isSelected == 1}">
+                    <div>
+                        <p>商品名称: ${item.item.name} 价格:¥ ${item.price}</p>
+                        <input type="hidden" name="itemIds[]" value="${item.item.id}">
+                    </div>
+                </c:if>
             </c:forEach>
 
             <h2>选择支付方式</h2>

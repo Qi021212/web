@@ -9,8 +9,9 @@ public interface CartDAO {
     public boolean itemExists(int userId, int itemId);
     public List<Cart> getCartItemsByUserId(int userId);
     public Cart getCartItem(int userId, int itemId);
-    public void updateCartItem(int userId, int itemId, int quantityChange);
+    public void updateCartItem(Cart cart);
     public int insertCart(Cart cart);
     public void deleteCartItem(int userId, int itemId);
     public void deleteAllItemsByUserId(int userId);
+    public void updateCartSelection(int userId, int itemId, int isSelected);
 }

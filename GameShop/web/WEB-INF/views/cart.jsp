@@ -2,10 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+</head>
+<body>
 <div>
   <h2 class="cart">我的购物车</h2>
-  <div>
+  <form action="cart" method="post">
     <table class="cart">
       <thead>
       <tr>
@@ -23,6 +29,15 @@
       </c:if>
       <c:forEach var="cartItem" items="${cartItems}">
         <tr>
+          <td>
+            <form action="cart" method="post">
+              <input type="checkbox"
+                     name="selectedItem"
+                     value="${cartItem.item.id}"
+                ${cartItem.isSelected == 1 ? 'checked' : ''}>
+              <input type="hidden" name="action" value="updateSelection">
+            </form>
+          </td>
           <td>${cartItem.item.name}</td>
           <td><img src="${cartItem.item.picture}" alt="${cartItem.item.name}" width="200" height="120"></td>
           <td>¥ ${cartItem.price}</td>
@@ -41,19 +56,19 @@
       <hr>
       <h3 class="cart">总金额: ¥ ${totalAmount}</h3>
 
-      <form id="submitOrderForm" action="${pageContext.request.contextPath}/order_submit" method="post">
+      <div id="submitOrderForm" action="${pageContext.request.contextPath}/order_submit" method="post">
         <input type="hidden" name="action" value="submitOrder">
         <input type="hidden" name="totalAmount" value="${totalAmount}">
-        <input type="hidden" name="userId" value="1"> <!-- 硬编码用户ID -->
         <c:forEach var="cartItem" items="${cartItems}">
           <input type="hidden" name="itemIds" value="${cartItem.itemId}">
         </c:forEach>
         <button type="submit" class="btn btn-success btn-lg">提交订单</button>
-      </form>
+      </div>
     </div>
-  </div>
+  </form>
 </div>
-
 </body>
 </html>
+
+
 

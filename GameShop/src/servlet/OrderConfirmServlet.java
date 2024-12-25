@@ -7,16 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import persistence.impl.CartDAOImpl;
-import service.ExistingGameService;
-import service.ItemService;
-import service.OrderService;
-import service.UserService;
+import service.*;
 
 import java.io.IOException;
 import java.util.Date;
 
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
+    CartService cartService = new CartService();
     private UserService userService = new UserService(); // 假设你有 UserService 来获取用户信息
     private CartDAOImpl cartDAO = new CartDAOImpl();
     private ExistingGameService existingGameService = new ExistingGameService();
@@ -56,6 +54,9 @@ public class OrderConfirmServlet extends HttpServlet {
             for (int i = 0; i < itemIds.length; i++) {
                 int itemId = Integer.parseInt(itemIds[i]);
 
+                //更新购物车中内容，将刚已买物品删去
+                cartService.deleteCartItem(userId, itemId);
+
                 // 从数据库或其他地方获取商品信息
                 Item item = oService.getItemById(itemId); // 假设您有这个方法来获取 Item
                 if (item != null) {
@@ -83,8 +84,10 @@ public class OrderConfirmServlet extends HttpServlet {
         action.setType("生成订单");
         session.setAttribute("userAction", action);
 
-        // 清空购物车：删除用户所有购物车项
-        cartDAO.deleteAllItemsByUserId(userId);
+//         //清空购物车：删除用户所有购物车项
+//        cartDAO.deleteAllItemsByUserId(userId);
+
+
 
         request.setAttribute("msg", "订单支付成功！");
         request.getRequestDispatcher("/WEB-INF/views/order_success.jsp").forward(request, response);

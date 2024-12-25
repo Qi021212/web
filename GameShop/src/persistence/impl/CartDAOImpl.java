@@ -14,7 +14,7 @@ public class CartDAOImpl implements CartDAO {
 
     public void addToCart(Cart cart) {
         String checkSql = "SELECT * FROM cart WHERE user_id = ? AND item_id = ?";
-        String insertSql = "INSERT INTO cart (user_id, item_id, price) VALUES (?, ?, ?)";
+        String insertSql = "INSERT INTO cart (user_id, item_id, price, in_cart, add_count) VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection conn = DBUtil.getConnection();
@@ -30,6 +30,8 @@ public class CartDAOImpl implements CartDAO {
                 insertStmt.setInt(1, cart.getUserId());
                 insertStmt.setInt(2, cart.getItemId());
                 insertStmt.setDouble(3, cart.getPrice());
+                insertStmt.setInt(4, cart.getInCart());
+                insertStmt.setInt(5, cart.getAddCount());
                 insertStmt.executeUpdate();
             }
             DBUtil.closeResultSet(rs);
@@ -64,7 +66,7 @@ public class CartDAOImpl implements CartDAO {
     // 获取用户购物车中的所有商品
     public List<Cart> getCartItemsByUserId(int userId) {
         List<Cart> cartItems = new ArrayList<>();
-        String sql = "SELECT * FROM cart WHERE user_id = ?";
+        String sql = "SELECT * FROM cart WHERE user_id = ? AND in_cart = 1"; // 只查询in_cart = 1的商品
 
         try {
             Connection conn = DBUtil.getConnection();
@@ -78,7 +80,9 @@ public class CartDAOImpl implements CartDAO {
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getInt("item_id"),
-                        rs.getDouble("price")
+                        rs.getDouble("price"),
+                        rs.getInt("in_cart"),
+                        rs.getInt("add_count")
                 );
                 cartItems.add(cartItem);
             }
@@ -91,16 +95,24 @@ public class CartDAOImpl implements CartDAO {
         return cartItems;
     }
 
-    //获取单个购物车项的方法
+    //获取单个购物车项的方法（根据用户ID和商品ID）
     public Cart getCartItem(int userId, int itemId) {
         String sql = "SELECT * FROM cart WHERE user_id = ? AND item_id = ?";
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.setInt(2, itemId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new Cart(userId, itemId, rs.getInt("quantity"), rs.getDouble("amount"), rs.getDouble("price"));
+                return new Cart(
+                        rs.getInt("id"),
+                        rs.getInt("user_id"),
+                        rs.getInt("item_id"),
+                        rs.getDouble("price"),
+                        rs.getInt("in_cart"),
+                        rs.getInt("add_count")
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,14 +121,15 @@ public class CartDAOImpl implements CartDAO {
     }
 
     // 更新购物车商品数量
-    public void updateCartItem(int userId, int itemId, int quantityChange) {
-        String sql = "UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND item_id = ?";
+    public void updateCartItem(Cart cart) {
+        String sql = "UPDATE cart SET in_cart = ?, add_count = ? WHERE user_id = ? AND item_id = ?";
         try {
             Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, quantityChange);
-            ps.setInt(2, userId);
-            ps.setInt(3, itemId);
+            ps.setInt(1, cart.getInCart());
+            ps.setInt(2, cart.getAddCount());
+            ps.setInt(3, cart.getUserId());
+            ps.setInt(4, cart.getItemId());
             ps.executeUpdate();
             DBUtil.closePreparedStatement(ps);
             DBUtil.closeConnection(conn);
@@ -148,7 +161,7 @@ public class CartDAOImpl implements CartDAO {
 
     // 删除购物车中的商品
     public void deleteCartItem(int userId, int itemId) {
-        String sql = "DELETE FROM cart WHERE user_id = ? AND item_id = ?";
+        String sql = "UPDATE cart SET in_cart = 0 WHERE user_id = ? AND item_id = ?";
         try {
             Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -170,6 +183,23 @@ public class CartDAOImpl implements CartDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 更新选中状态
+    public void updateCartSelection(int userId, int itemId, int isSelected) {
+        String sql = "UPDATE cart SET is_selected = ? WHERE user_id = ? AND item_id = ?";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, isSelected);
+            ps.setInt(2, userId);
+            ps.setInt(3, itemId);
+            ps.executeUpdate();
+            DBUtil.closePreparedStatement(ps);
+            DBUtil.closeConnection(conn);
         } catch (Exception e) {
             e.printStackTrace();
         }

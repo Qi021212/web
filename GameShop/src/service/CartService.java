@@ -25,6 +25,11 @@ public class CartService {
     // 删除购物车中的商品
     public void deleteCartItem(int userId, int itemId) {
         cartDao.deleteCartItem(userId, itemId);
+//        Cart cartItem = cartDao.getCartItem(userId, itemId);
+//        if(cartItem != null) {
+//            cartItem.setInCart(0);  //标记为逻辑删除
+//            cartDao.updateCartItem(cartItem);   //更新数据库
+//        }
     }
 
     // 获取用户购物车中的商品
@@ -35,5 +40,11 @@ public class CartService {
             cartItem.setItem(item); // 将商品信息设置到 Cart 中
         }
         return cartItems;
+    }
+
+    //点击对应某商品的多选框更新数据库表中该用户该商品对应的isSelected值，多选框选中则为1，未选中或者取消选中为0
+    public void updateCartSelection(int userId, int selectedItemId, int isSelected) {
+        isSelected = isSelected == 1 ? 1 : 0;
+        cartDao.updateCartSelection(userId, selectedItemId, isSelected); // 设置选中的商品
     }
 }
