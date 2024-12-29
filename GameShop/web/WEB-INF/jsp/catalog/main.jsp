@@ -1,18 +1,16 @@
 <%@ include file="../common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="domain.Item" %>
-<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--轮播图--%>
 <div class="slide">
     <ul class="list">
         <li class="item"><a href=""><img src="images/001.png" alt="双人成行"></a></li>
-        <li class="item"><a href=""><img src="images/002.png" alt="沙威玛传奇"></a></li>
-        <li class="item"><a href=""><img src="images/003.png" alt="纸嫁衣5"></a></li>
+        <li class="item"><a href=""><img src="images/013.png" alt="纸嫁衣6千秋魇"></a></li>
+        <li class="item"><a href=""><img src="images/006.png" alt="Overcooked!2"></a></li>
         <li class="item"><a href=""><img src="images/004.png" alt="黑神话·悟空"></a></li>
         <li class="item"><a href=""><img src="images/005.png" alt="LIAR'S BAR"></a></li>
-        <li class="item"><a href=""><img src="images/006.png" alt="Overcooked!2"></a></li>
+        <li class="item"><a href=""><img src="images/031.png" alt="卡通农场"></a></li>
     </ul>
     <ul class="ulNum">
         <li class="num">1</li>
@@ -31,7 +29,14 @@
         <input type="text" placeholder="搜索游戏" name="keyword"/>
         <input type="submit" value="搜索" name="submit"/>
     </form>
-
+    <div id="autoComplete">
+        <ul id="autoCompleteList">
+            <li class="autoCompleteItem"><img src="images/001.png" class="autoCompleteItemImage" alt="">aaa</li>
+            <li class="autoCompleteItem">bbb</li>
+            <li class="autoCompleteItem">ccc</li>
+            <li class="autoCompleteItem">ddd</li>
+        </ul>
+    </div>
 </div>
 
 <%--商品展示--%>

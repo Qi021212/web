@@ -85,6 +85,9 @@ li.header a:hover{
 .search{
     margin: 10px 10px 10px 180px;
 }
+.search form{
+    margin-bottom: 0;
+}
 .search input[type="text"]{
     width: 200px;
     height: 30px;
@@ -99,6 +102,36 @@ li.header a:hover{
     border-radius: 4px;
     background-color: #0099ff;
     color: #ffffff;
+}
+/*自动补全*/
+#autoComplete{
+    background-color: #495360;
+    position: absolute;
+    width: 253px;
+    display: none;
+}
+#autoCompleteList{
+    margin: 0;
+    padding: 0;
+}
+.autoCompleteItem{
+    list-style: none;
+    height: 60px;
+    padding-left: 5px;
+    padding-right: 10px;
+    line-height: 50px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.autoCompleteItemImage{
+    height:50px;
+    padding-top: 5px;
+    border-bottom: none;
+    vertical-align: middle;
+}
+.autoCompleteItem:hover{
+    background-color: #767e88;
 }
 /*商品展示导航栏*/
 ul.itemCategory{
@@ -131,7 +164,7 @@ ul.itemCategory{
 /*商品展示列表*/
 table.itemList{
     border: 1px solid black;
-    width: 900px;
+    margin-right: 180px;
     background-color: #16212e;
     color: #a5bec3;
     border-collapse: collapse;
