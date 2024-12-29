@@ -26,18 +26,15 @@
 <%--搜索栏--%>
 <div class="search">
     <form action="search" method="post">
-        <input type="text" placeholder="搜索游戏" name="keyword"/>
+        <input type="text" placeholder="搜索游戏" name="keyword" id="keyword"/>
         <input type="submit" value="搜索" name="submit"/>
     </form>
     <div id="autoComplete">
         <ul id="autoCompleteList">
-            <li class="autoCompleteItem"><img src="images/001.png" class="autoCompleteItemImage" alt="">aaa</li>
-            <li class="autoCompleteItem">bbb</li>
-            <li class="autoCompleteItem">ccc</li>
-            <li class="autoCompleteItem">ddd</li>
         </ul>
     </div>
 </div>
+<script src="js/autoComplete.js"></script>
 
 <%--商品展示--%>
 <div class="catalog">

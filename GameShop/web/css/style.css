@@ -119,15 +119,17 @@ li.header a:hover{
     height: 60px;
     padding-left: 5px;
     padding-right: 10px;
-    line-height: 50px;
     border-bottom: 1px solid black;
     cursor: pointer;
     vertical-align: middle;
+    font-size: 13px;
+    overflow: hidden;
 }
 .autoCompleteItemImage{
     height:50px;
     padding-top: 5px;
     border-bottom: none;
+    padding-right: 5px;
     vertical-align: middle;
 }
 .autoCompleteItem:hover{

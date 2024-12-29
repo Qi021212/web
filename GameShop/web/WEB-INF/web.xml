@@ -122,4 +122,13 @@
         <url-pattern>/actionForm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AutoCompleteServlet</servlet-name>
+        <servlet-class>servlet.AutoCompleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoCompleteServlet</servlet-name>
+        <url-pattern>/autoComplete</url-pattern>
+    </servlet-mapping>
+
 </web-app>
