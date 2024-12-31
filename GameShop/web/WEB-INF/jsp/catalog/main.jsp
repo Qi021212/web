@@ -52,7 +52,15 @@
     <table class="itemList">
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr class="itemList">
-                <td class="img"><a href="itemInformation?itemPicture=${item.picture}"><img src="${item.picture}" alt="${item.name}"></a></td>
+                <td class="img"><a href="itemInformation?itemPicture=${item.picture}"><img src="${item.picture}" alt="${item.name}" class="item-image"></a></td>
+<%--                <td class="floating-window" id="">--%>
+<%--                    <div class="floating-window-content">--%>
+<%--                        <h3 class="floating-window-name">${item.name}</h3>--%>
+<%--                        <p class="floating-window-description">${item.description}</p>--%>
+<%--                        <p class="floating-window-type">${item.type}</p>--%>
+<%--                    </div>--%>
+<%--                    <div class="floating-window-mask"></div>--%>
+<%--                </td>--%>
                 <td class="name&type">${item.name}<br/><br/>${item.type}</td>
                 <td class="price">¥ ${item.price}</td>
                 <td class="add">
@@ -66,5 +74,11 @@
         </c:forEach>
     </table>
 </div>
+<%--悬浮窗--%>
+<div class="floating-window">
+
+</div>
+
+<script src="js/floatingWindow.js"></script>
 
 <%@ include file="../common/bottom.jsp"%>

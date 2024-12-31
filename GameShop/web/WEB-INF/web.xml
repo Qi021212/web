@@ -131,4 +131,13 @@
         <url-pattern>/autoComplete</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FloatingWindowServlet</servlet-name>
+        <servlet-class>servlet.FloatingWindowServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FloatingWindowServlet</servlet-name>
+        <url-pattern>/floatingWindow</url-pattern>
+    </servlet-mapping>
+
 </web-app>
