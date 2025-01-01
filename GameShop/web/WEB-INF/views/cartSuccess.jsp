@@ -10,8 +10,6 @@
         <td><a href="mainForm">继续浏览商品</a></td>
         <td><a href="cart">查看购物车</a></td>
     </tr>
-
-
 </table>
 </body>
 </html>

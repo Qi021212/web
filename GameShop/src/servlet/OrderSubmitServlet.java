@@ -27,21 +27,22 @@ public class OrderSubmitServlet extends HttpServlet {
             return;
         }
 
-        // 获取购物车商品信息
-        String[] itemIds = req.getParameterValues("itemIds");
-        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
-        double totalAmount = 0;
-        for (Cart cartItem : cartItems) {
-            totalAmount += cartItem.getPrice(); // 计算总金额
-        }
+        // 从Session获取选中的商品
+        List<Cart> selectedItems = (List<Cart>) session.getAttribute("selectedItems");
+        double totalAmount = (Double) session.getAttribute("totalAmount");
+
+        String[] selectedItemIds = req.getParameterValues("selectedItemIds");
+
 
         // 将购物车商品和总金额传递到请求中
-        req.setAttribute("itemIds", itemIds);
-        req.setAttribute("cartItems", cartItems);
+        req.setAttribute("selectedItemIds", selectedItemIds);
+        // 将商品列表和总金额传递到请求中
+        req.setAttribute("selectedItems", selectedItems);
         req.setAttribute("totalAmount", totalAmount);
 
-        // 由于使用了硬编码，这里直接重定向到提交页面
+        // 跳转到订单确认页面
         req.getRequestDispatcher("/WEB-INF/views/order_submit.jsp").forward(req, resp);
+
     }
 
     @Override
@@ -49,4 +50,20 @@ public class OrderSubmitServlet extends HttpServlet {
         this.doPost(req, resp);
     }
 }
+
+//        // 获取购物车商品信息
+//        String[] itemIds = req.getParameterValues("itemIds");
+//        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
+//        double totalAmount = 0;
+//        for (Cart cartItem : cartItems) {
+//            totalAmount += cartItem.getPrice(); // 计算总金额
+//        }
+//
+
+//        req.setAttribute("cartItems", cartItems);
+//        req.setAttribute("totalAmount", totalAmount);
+//
+//        // 由于使用了硬编码，这里直接重定向到提交页面
+//        req.getRequestDispatcher("/WEB-INF/views/order_submit.jsp").forward(req, resp);
+
 

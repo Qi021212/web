@@ -54,15 +54,89 @@
                 <td class="name&type">${item.name}<br/><br/>${item.type}</td>
                 <td class="price">¥ ${item.price}</td>
                 <td class="add">
-                    <form action="addToCart" method="POST">
-                        <input type="hidden" name="itemId" value="${item.id}" />
-                        <input type="hidden" name="price" value="${item.price}" />
-                        <input type="submit" value="添加到购物车" class="addBtn"/>
-                    </form>
+<%--                    <form action="addToCart" method="POST">--%>
+<%--                        <input type="hidden" name="itemId" value="${item.id}" />--%>
+<%--                        <input type="hidden" name="price" value="${item.price}" />--%>
+<%--                        <input type="submit" value="添加到购物车" class="addBtn"/>--%>
+<%--                    </form>--%>
+                    <button class="addBtn" data-item-id="${item.id}" data-price="${item.price}" data-name="${item.name}">
+                        添加到购物车
+                    </button>
                 </td>
             </tr>
         </c:forEach>
     </table>
 </div>
 
-<%@ include file="../common/bottom.jsp"%>
+<script>
+    $(document).ready(function () {
+        $('.addBtn').click(function () {
+            const itemId = $(this).data('item-id');
+            const price = $(this).data('price');
+            const itemName = $(this).data('name');
+
+            // 弹出确认框
+            const confirmAdd = confirm(`是否添加 ${itemName} 到购物车？`);
+            if (confirmAdd) {
+                // 使用 jQuery AJAX 发送请求
+                $.ajax({
+                    url: 'addToCart',
+                    type: 'POST',
+                    data: {
+                        itemId: itemId,
+                        price: price
+                    },
+                    success: function (response) {
+                        alert("添加成功！");
+                    },
+                    error: function (xhr, status, error) {
+                        alert('添加失败，请重试。');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+
+<%--<script>--%>
+<%--    // 为每个“添加到购物车”按钮绑定点击事件--%>
+<%--    document.querySelectorAll('.addBtn').forEach(button => {--%>
+<%--        button.addEventListener('click', function () {--%>
+<%--            // 获取商品信息--%>
+<%--            const itemId = this.getAttribute('data-item-id');--%>
+<%--            const price = this.getAttribute('data-price');--%>
+<%--            const itemName = this.getAttribute('data-name');--%>
+
+<%--            // 弹出确认框--%>
+<%--            if (confirm(`是否添加${item.name}到购物车？`)) {--%>
+<%--                // 动态创建表单并提交--%>
+<%--                const form = document.createElement('form');--%>
+<%--                form.method = 'POST';--%>
+<%--                form.action = 'addToCart';--%>
+
+<%--                // 创建隐藏字段传递数据--%>
+<%--                const itemIdInput = document.createElement('input');--%>
+<%--                itemIdInput.type = 'hidden';--%>
+<%--                itemIdInput.name = 'itemId';--%>
+<%--                itemIdInput.value = itemId;--%>
+
+<%--                const priceInput = document.createElement('input');--%>
+<%--                priceInput.type = 'hidden';--%>
+<%--                priceInput.name = 'price';--%>
+<%--                priceInput.value = price;--%>
+
+<%--                // 将隐藏字段添加到表单--%>
+<%--                form.appendChild(itemIdInput);--%>
+<%--                form.appendChild(priceInput);--%>
+
+<%--                // 将表单添加到页面并提交--%>
+<%--                document.body.appendChild(form);--%>
+<%--                form.submit();--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
+
+<%@ include file="../common/bottom.jsp" %>

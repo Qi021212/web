@@ -12,9 +12,9 @@
     <div class="container">
         <h2>订单确认</h2>
         <form action="${pageContext.request.contextPath}/order_confirm" method="post">
-            <input type="hidden" name="totalAmount" value="${totalAmount}"> <!-- 确保有总金额 -->
-            <c:forEach var="itemId" items="${itemIds}">
-                <input type="hidden" name="itemIds" value="${itemId}">
+            <input type="hidden" name="totalAmount" value="${totalAmount}">
+            <c:forEach var="selectedItemId" items="${selectedItemIds}">
+                <input type="hidden" name="selectedItemIds" value="${selectedItemId}">
             </c:forEach>
 
             <div>
@@ -33,21 +33,16 @@
             <br><hr><br>
 
             <h2>商品列表</h2>
-            <c:forEach var="item" items="${cartItems}">
-<%--                <div>--%>
-<%--                    <p>商品名称: ${item.item.name}    价格:¥ ${item.price}</p>--%>
-<%--                    <input type="hidden" name="itemIds[]" value="${item.id}">--%>
-<%--                </div>--%>
-                <c:if test="${item.isSelected == 1}">
-                    <div>
-                        <p>商品名称: ${item.item.name} 价格:¥ ${item.price}</p>
-                        <input type="hidden" name="itemIds[]" value="${item.item.id}">
-                    </div>
-                </c:if>
+            <c:forEach var="selectedItem" items="${selectedItems}">
+                <div>
+                    <p>商品名称: ${selectedItem.item.name} 价格: ¥ ${selectedItem.price}</p>
+                    <input type="hidden" name="itemIds[]" value="${selectedItem.item.id}">
+                </div>
             </c:forEach>
 
             <h2>选择支付方式</h2>
-            <h3>支付金额: ¥ ${totalAmount }</h3><br><br>
+<%--            <h3>支付金额: ¥ ${sessionScope.submitTotalAmount}</h3><br><br>--%>
+            <h3>支付金额: ¥ ${totalAmount}</h3>
 
             <div class="col-sm-6 col-md-4 col-lg-3 " >
                 <label>

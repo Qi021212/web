@@ -64,6 +64,7 @@ public class CartDAOImpl implements CartDAO {
     }
 
     // 获取用户购物车中的所有商品
+    // 在获取购物车商品时，查询 is_selected 字段
     public List<Cart> getCartItemsByUserId(int userId) {
         List<Cart> cartItems = new ArrayList<>();
         String sql = "SELECT * FROM cart WHERE user_id = ? AND in_cart = 1"; // 只查询in_cart = 1的商品
@@ -84,6 +85,7 @@ public class CartDAOImpl implements CartDAO {
                         rs.getInt("in_cart"),
                         rs.getInt("add_count")
                 );
+                cartItem.setIsSelected(rs.getInt("is_selected")); // 获取is_selected字段
                 cartItems.add(cartItem);
             }
             DBUtil.closeResultSet(rs);
@@ -93,6 +95,23 @@ public class CartDAOImpl implements CartDAO {
             e.printStackTrace();
         }
         return cartItems;
+    }
+
+    // 更新购物车商品选中状态
+    public void updateCartItemSelection(int userId, int itemId, int isSelected) {
+        String sql = "UPDATE cart SET is_selected = ? WHERE user_id = ? AND item_id = ?";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, isSelected);
+            ps.setInt(2, userId);
+            ps.setInt(3, itemId);
+            ps.executeUpdate();
+            DBUtil.closePreparedStatement(ps);
+            DBUtil.closeConnection(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //获取单个购物车项的方法（根据用户ID和商品ID）
@@ -111,7 +130,8 @@ public class CartDAOImpl implements CartDAO {
                         rs.getInt("item_id"),
                         rs.getDouble("price"),
                         rs.getInt("in_cart"),
-                        rs.getInt("add_count")
+                        rs.getInt("add_count"),
+                        rs.getInt("is_selected")
                 );
             }
         } catch (Exception e) {
@@ -183,23 +203,6 @@ public class CartDAOImpl implements CartDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // 更新选中状态
-    public void updateCartSelection(int userId, int itemId, int isSelected) {
-        String sql = "UPDATE cart SET is_selected = ? WHERE user_id = ? AND item_id = ?";
-        try {
-            Connection conn = DBUtil.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, isSelected);
-            ps.setInt(2, userId);
-            ps.setInt(3, itemId);
-            ps.executeUpdate();
-            DBUtil.closePreparedStatement(ps);
-            DBUtil.closeConnection(conn);
         } catch (Exception e) {
             e.printStackTrace();
         }

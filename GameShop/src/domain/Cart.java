@@ -38,7 +38,7 @@ public class Cart {
     }
 
     // 全参构造函数
-    public Cart(int id, int userId, int itemId, String name, String picture, double price, int inCart, int addCount) {
+    public Cart(int id, int userId, int itemId, String name, String picture, double price, int inCart, int addCount, int isSelected) {
         this.id = id;
         this.userId = userId;
         this.itemId = itemId;
@@ -47,6 +47,17 @@ public class Cart {
         this.price = price;
         this.inCart = inCart;
         this.addCount = addCount;
+        this.isSelected = isSelected;
+    }
+
+    public Cart(int id, int userId, int itemId, double price, int inCart, int addCount, int isSelected) {
+        this.id = id;
+        this.userId = userId;
+        this.itemId = itemId;
+        this.price = price;
+        this.inCart = inCart;
+        this.addCount = addCount;
+        this.isSelected = isSelected;
     }
 
     public Cart(int userId, int itemId, double price, int inCart, int addCount) {

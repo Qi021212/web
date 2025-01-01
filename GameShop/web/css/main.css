@@ -1,0 +1,22 @@
+#successPopup {
+    display: block;
+    z-index: 1000;
+    text-align: center;
+}
+#successPopup .popup-content {
+    margin: auto;
+    padding: 20px;
+    width: 300px;
+}
+#successPopup button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#successPopup button:hover {
+    background: #0056b3;
+}

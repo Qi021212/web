@@ -57,8 +57,10 @@ public class AddToCartServlet extends HttpServlet {
         action.setType("添加到购物车");
         session.setAttribute("userAction", action);
 
-        // 跳转到购物车成功页面
-        request.setAttribute("message", "添加成功！");
-        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
+        response.setStatus(HttpServletResponse.SC_OK); // 返回200状态码，表示成功
+        response.getWriter().write("success");
+
+//        request.setAttribute("message", "添加成功！");
+//        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
     }
 }

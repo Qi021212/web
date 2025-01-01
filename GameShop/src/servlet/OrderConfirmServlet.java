@@ -38,7 +38,7 @@ public class OrderConfirmServlet extends HttpServlet {
         o.setDatetime(new Date());
         o.setStatus(2);// 状态：1-待支付，2-已支付等
         o.setName(request.getParameter("name"));
-        o.setPhone(request.getParameter("phone")); // This may need to be added to the Order model
+        o.setPhone(request.getParameter("phone"));
         o.setEmail(request.getParameter("email"));
         o.setPaytype(Integer.parseInt(request.getParameter("paytype")));
         o.setTotal(Double.parseDouble(request.getParameter("totalAmount")));
@@ -48,7 +48,7 @@ public class OrderConfirmServlet extends HttpServlet {
         o.setId(orderId); // 确保订单对象的 ID 是最新的
 
         // 插入订单项
-        String[] itemIds = request.getParameterValues("itemIds");
+        String[] itemIds = request.getParameterValues("selectedItemIds");
 
         if (itemIds != null) {
             for (int i = 0; i < itemIds.length; i++) {

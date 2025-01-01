@@ -42,9 +42,13 @@ public class CartService {
         return cartItems;
     }
 
-    //点击对应某商品的多选框更新数据库表中该用户该商品对应的isSelected值，多选框选中则为1，未选中或者取消选中为0
-    public void updateCartSelection(int userId, int selectedItemId, int isSelected) {
-        isSelected = isSelected == 1 ? 1 : 0;
-        cartDao.updateCartSelection(userId, selectedItemId, isSelected); // 设置选中的商品
+    // 更新商品的选中状态
+    public void updateCartItemSelection(int userId, int itemId, int isSelected) {
+        cartDao.updateCartItemSelection(userId, itemId, isSelected);
+    }
+
+    public Cart getCartItemByUserIdAndItemId(int userId, int itemId) {
+        // 你需要根据userId和itemId查找数据库中的该商品
+        return cartDao.getCartItem(userId, itemId);
     }
 }
