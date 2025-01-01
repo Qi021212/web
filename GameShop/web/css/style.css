@@ -38,6 +38,7 @@ li.header a:hover{
     color: #0099ff;
 }
 
+
 /*main*/
 /*轮播图片区*/
 .slide{
@@ -81,6 +82,7 @@ li.header a:hover{
 .num:hover{
     background-color: #767e88;
 }
+
 /*搜索栏*/
 .search{
     margin: 10px 10px 10px 180px;
@@ -135,6 +137,7 @@ li.header a:hover{
 .autoCompleteItem:hover{
     background-color: #767e88;
 }
+
 /*商品展示导航栏*/
 ul.itemCategory{
     list-style-type: none;
@@ -242,6 +245,7 @@ td>a>img{
     font-size: 15px;
 }
 
+
 /*itemInformation*/
 /*商品具体信息*/
 table.item{
@@ -274,7 +278,9 @@ td.add{
     margin-left: 5px;
 }
 
+
 /*userInfo*/
+/*个人信息*/
 table.userinfo{
     width: 780px;
     height: 400px;
@@ -300,7 +306,10 @@ table.userinfo{
 .editBtn:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+
 /*cart*/
+/*购物车*/
 table.cart{
     width: 780px;
     color: white;
@@ -338,7 +347,10 @@ h3.cart{
     margin-left: 10px;
     margin-top: 10px;
 }
+
+
 /*order_list*/
+/*订单*/
 h2.order{
     margin-top:100px;
     margin-left: 10px;
@@ -357,7 +369,10 @@ h2.order{
     border-bottom: 1px solid #ffffff;
     margin-left: 10px;
 }
+
+
 /*action*/
+/*日志*/
 h1.actionList{
     margin-top:100px;
     margin-left: 10px;

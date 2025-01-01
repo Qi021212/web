@@ -1,9 +1,9 @@
 $(function() {
-    // 为所有商品图片绑定鼠标悬停事件
     $('.item-image').on('mouseover',function(e) {
         e.stopPropagation();
         var itemSrc = $(this).attr('src');
-        var imgOffset = $(this).offset();
+        var imgOffset = $(this).offset();//获取当前图片位置
+        //设置悬浮窗位置
         $('.floating-window').css({
             top: imgOffset.top + 'px',
             left: imgOffset.left + $(this).width() + 5 +'px'
