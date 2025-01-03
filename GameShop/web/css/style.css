@@ -329,6 +329,10 @@ h2.cart{
     padding-bottom: 10px;
 }
 h3.cart{
+    margin-left: 10px;
+    font-size: 20px;
+}
+h3.total{
     margin: 5px 20px 5px 60px;
     font-size: 20px;
     text-align: right;
@@ -340,6 +344,16 @@ h3.cart{
     padding: 2px;
 }
 .btn-success{
+    background-color: #6ca520;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.btn-submit{
     background-color: #6ca520;
     color: white;
     font-size: 19px;

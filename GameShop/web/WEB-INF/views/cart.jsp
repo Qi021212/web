@@ -99,8 +99,8 @@
         </tbody>
       </table>
       <div>
-        <h3 class="cart" id="totalAmount">总金额: ¥ ${totalAmount}</h3>
-        <button type="button" class="btn btn-success btn-lg" onclick="submitOrder()">提交订单</button>
+        <h3 class="total" id="totalAmount">总金额: ¥ ${totalAmount}</h3>
+        <button type="button" class="btn btn-submit btn-lg" onclick="submitOrder()">提交订单</button>
       </div>
     </div>
     <div id="container-right" class="container-right" style="display: none;">
@@ -199,7 +199,7 @@
 
         // 隐藏总金额和提交订单按钮
         document.getElementById("totalAmount").style.display = 'none';
-        document.querySelector('button[class="btn btn-success btn-lg"]').style.display = 'none';
+        document.querySelector('button[class="btn btn-submit btn-lg"]').style.display = 'none';
         document.getElementById("container-right").style.display = "block";
 
         // 直接显示订单填写选项卡
