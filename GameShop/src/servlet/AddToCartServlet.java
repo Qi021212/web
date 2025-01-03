@@ -25,16 +25,27 @@ public class AddToCartServlet extends HttpServlet {
             return;
         }
 
-
-
         // 获取请求参数
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         double price = Double.parseDouble(request.getParameter("price"));
 
-        // 创建购物车对象并保存
-        Cart cart = new Cart(userId, itemId, price);
+        // 检查商品是否已在购物车中
         CartDAOImpl cartDAO = new CartDAOImpl();
-        cartDAO.addToCart(cart);
+        Cart existingCartItem = cartDAO.getCartItem(userId, itemId);
+
+        if (existingCartItem == null) {
+            // 商品不在购物车中，插入新记录
+            Cart cart = new Cart(userId, itemId, price, 1, 1);
+            cartDAO.addToCart(cart);
+        } else {
+            // 商品已在购物车中，更新 `in_cart` 为 1，`add_count` 增加
+            existingCartItem.setInCart(1);
+            existingCartItem.setAddCount(existingCartItem.getAddCount() + 1);
+            cartDAO.updateCartItem(existingCartItem);
+        }
+
+//        Cart cart = new Cart(userId, itemId, price);
+//        cartDAO.addToCart(cart);
 
         //日志功能
         Action action=new Action();
@@ -46,8 +57,10 @@ public class AddToCartServlet extends HttpServlet {
         action.setType("添加到购物车");
         session.setAttribute("userAction", action);
 
-        // 跳转到购物车成功页面
-        request.setAttribute("message", "添加成功！");
-        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
+        response.setStatus(HttpServletResponse.SC_OK); // 返回200状态码，表示成功
+        response.getWriter().write("success");
+
+//        request.setAttribute("message", "添加成功！");
+//        request.getRequestDispatcher("/WEB-INF/views/cartSuccess.jsp").forward(request, response);
     }
 }

@@ -302,4 +302,22 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return orderItems;
     }
+
+    public void addOrderItem(OrderItem orderItem) {
+        String sql = "INSERT INTO order_items (order_id, item_id, price) VALUES (?, ?, ?)";
+        try {
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderItem.getOrderId());
+            ps.setInt(2, orderItem.getItemId());
+            ps.setDouble(3, orderItem.getPrice());
+            ps.executeUpdate();
+            DBUtil.closePreparedStatement(ps);
+            DBUtil.closeConnection(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
