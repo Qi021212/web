@@ -20,4 +20,5 @@ public interface OrderDAO {
     public List<Order> selectOrderList(int status, int pageNumber, int pageSize);
     public List<Order> findOrdersByUserId(int userId);
     public List<OrderItem> getOrderItemsByOrderId(int orderId);
+    public void addOrderItem(OrderItem orderItem);
 }

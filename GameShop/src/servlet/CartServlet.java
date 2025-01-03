@@ -1,6 +1,8 @@
 package servlet;
 
 import domain.Cart;
+import domain.Order;
+import domain.OrderItem;
 import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -9,11 +11,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import persistence.impl.CartDAOImpl;
 import service.CartService;
+import service.OrderService;
 import service.UserService;
+import com.alibaba.fastjson.JSONObject;
+
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CartServlet extends HttpServlet {
     CartService cartService = new CartService();
@@ -57,47 +61,72 @@ public class CartServlet extends HttpServlet {
                 List<Cart> cartItems2 = cartService.getCartItemsByUserId(userId);
 
                 // 获取选中的商品并计算总金额
-                List<Cart> selectedItems = new ArrayList<>();
+//                List<Cart> selectedItems = new ArrayList<>();
+                List<Map<String, Object>> selectedItems = new ArrayList<>();
                 List<Integer> selectedItemIds = new ArrayList<>(); // 用来存储选中的商品ID
                 double submitTotalAmount = 0;
                 for (Cart cartItem2 : cartItems2) {
                     if (cartItem2 != null && cartItem2.getIsSelected() == 1) {
-                        selectedItems.add(cartItem2);
+//                        selectedItems.add(cartItem2);
+                        Map<String, Object> itemMap = new HashMap<>();
+                        itemMap.put("id", cartItem2.getItemId());
+                        itemMap.put("name", cartItem2.getItem().getName());  // 假设 Cart 对象有 item 属性，里面有商品名称
+                        itemMap.put("price", cartItem2.getPrice());
+
+                        selectedItems.add(itemMap);
                         selectedItemIds.add(cartItem2.getItemId());
                         submitTotalAmount += cartItem2.getPrice();
                     }
                 }
+
                 // 将选中的商品和总金额存入session，传递给订单确认页面
                 session.setAttribute("selectedItems", selectedItems);
                 session.setAttribute("selectedItemIds", selectedItemIds);
                 session.setAttribute("totalAmount", submitTotalAmount);
 
+                // 创建一个JSON对象，将选中的商品和总金额作为JSON返回
+                JSONObject responseJson = new JSONObject();
+                responseJson.put("selectedItems", selectedItems);
+                responseJson.put("totalAmount", submitTotalAmount);
 
-                // 返回更新后的总金额
-                request.setAttribute("user", user);
+                // 调试输出
+                System.out.println("Selected Items: " + selectedItems);
+                System.out.println("Total Amount: " + submitTotalAmount);
+
+                // 返回JSON数据给前端
                 response.setContentType("application/json");
-                response.getWriter().write("{\"selectedItems\":" + selectedItems + "}");
-                response.getWriter().write("{\"totalAmount\":" + submitTotalAmount + "}");
+                response.getWriter().write(responseJson.toString());
                 return;
-
-
-//                // 跳转到订单确认页面
-//                response.sendRedirect("order_submit");
-
-//                // 将总金额存入 session 或 request
-//                request.getSession().setAttribute("totalAmount", totalAmount);
-//
 //                // 获取用户信息
 //                User user = userService.findUserById(userId); // 获取用户信息
+//                List<Cart> cartItems2 = cartService.getCartItemsByUserId(userId);
 //
-//                // 设置用户信息到请求中
+//                // 获取选中的商品并计算总金额
+//                List<Cart> selectedItems = new ArrayList<>();
+//                List<Integer> selectedItemIds = new ArrayList<>(); // 用来存储选中的商品ID
+//                double submitTotalAmount = 0;
+//                for (Cart cartItem2 : cartItems2) {
+//                    if (cartItem2 != null && cartItem2.getIsSelected() == 1) {
+//                        selectedItems.add(cartItem2);
+//                        selectedItemIds.add(cartItem2.getItemId());
+//                        submitTotalAmount += cartItem2.getPrice();
+//                    }
+//                }
+//                // 将选中的商品和总金额存入session，传递给订单确认页面
+//                session.setAttribute("selectedItems", selectedItems);
+//                session.setAttribute("selectedItemIds", selectedItemIds);
+//                session.setAttribute("totalAmount", submitTotalAmount);
+//
+//
+//                // 返回更新后的总金额
 //                request.setAttribute("user", user);
-//                request.setAttribute("cartItems", cartItems);
-//                request.setAttribute("totalAmount", totalAmount);
-//
-//                // 跳转到订单提交页面
-//                response.sendRedirect(request.getContextPath() + "/order_submit");
-//                break;
+//                response.setContentType("application/json");
+//                response.getWriter().write("{\"selectedItems\":" + selectedItems + "}");
+//                response.getWriter().write("{\"totalAmount\":" + submitTotalAmount + "}");
+//                return;
+
+
+
             case "addToCart":
                 // 添加商品到购物车
                 int itemId1 = Integer.parseInt("itemId");
@@ -133,9 +162,7 @@ public class CartServlet extends HttpServlet {
                 response.getWriter().write("{\"totalAmount\":" + updatedTotalAmount + "}");
                 return;
         }
-//        response.sendRedirect("cart");
-//        // 在所有操作完成后，转发回购物车页面，避免直接使用 sendRedirect
-//        request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
+
     }
 
     @Override
@@ -164,4 +191,24 @@ public class CartServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
     }
 }
+//        response.sendRedirect("cart");
+//        // 在所有操作完成后，转发回购物车页面，避免直接使用 sendRedirect
+//        request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
 
+//                // 跳转到订单确认页面
+//                response.sendRedirect("order_submit");
+
+//                // 将总金额存入 session 或 request
+//                request.getSession().setAttribute("totalAmount", totalAmount);
+//
+//                // 获取用户信息
+//                User user = userService.findUserById(userId); // 获取用户信息
+//
+//                // 设置用户信息到请求中
+//                request.setAttribute("user", user);
+//                request.setAttribute("cartItems", cartItems);
+//                request.setAttribute("totalAmount", totalAmount);
+//
+//                // 跳转到订单提交页面
+//                response.sendRedirect(request.getContextPath() + "/order_submit");
+//                break;

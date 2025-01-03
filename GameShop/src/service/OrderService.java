@@ -60,6 +60,13 @@ public class OrderService {
         }
     }
 
+    public void addOrderItems(List<OrderItem> orderItems) {
+        for (OrderItem orderItem : orderItems) {
+            // 假设有一个 OrderItemDAO 类用于操作数据库
+            oDao.addOrderItem(orderItem);
+        }
+    }
+
     // 获取订单项列表
     public List<OrderItem> getOrderItemsByOrderId(int orderId) {
         return oDao.getOrderItemsByOrderId(orderId);

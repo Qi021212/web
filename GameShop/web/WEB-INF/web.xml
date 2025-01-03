@@ -122,4 +122,14 @@
         <url-pattern>/actionForm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>OrderAjaxServlet</servlet-name>
+        <servlet-class>servlet.OrderAjaxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderAjaxServlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

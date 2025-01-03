@@ -257,8 +257,10 @@ h2.cart{
     padding-bottom: 10px;
 }
 h3.cart{
-    margin-left: 10px;
+    margin: 5px 20px 5px 60px;
     font-size: 20px;
+    text-align: right;
+    width: 710px;
 }
 .cartDelete{
     font-size: 15px;
@@ -268,11 +270,12 @@ h3.cart{
 .btn-success{
     background-color: #6ca520;
     color: white;
-    font-size: 16px;
+    font-size: 19px;
     padding: 5px 10px;
     border-radius: 4px;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 5px 20px 5px 651px;
+    width: 120px;
+    height: 50px;
 }
 /*order_list*/
 h2.order{

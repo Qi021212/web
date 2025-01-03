@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="jakarta.servlet.jsp.jstl-2.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../tomcat01/apache-tomcat-10.1.30/lib/jakarta.servlet.jsp.jstl-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../tomcat01/apache-tomcat-10.1.30/lib/jakarta.servlet.jsp.jstl-api-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../tomcat01/apache-tomcat-10.1.30/lib/jsp-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../tomcat01/apache-tomcat-10.1.30/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../tomcat01/apache-tomcat-10.1.30/lib/taglibs-standard-spec-1.2.5-migrated-0.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,29 +1,31 @@
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
+html {
+    height:100%;
+}
+/* 图片的父元素是body，图片作为背景图，需要占满整个浏览器窗口，所以图片要填满整个父元素 */
+body {
+    /* 设置body占满整个父元素 */
+    height:100%;
+    transition: all .3s ease-out;
+}
+
+/* 页面的主题部分，也称为"版心" */
+.container{
+    width: 1160px;
+    margin: 0 auto;
+    height: calc(100% - 35px);
+    overflow: hidden;
+}
+.container-left{
+    height: 100%;
+    width: 60%;
+    float: left;
+    padding: 10px;
+}
+.container-right{
+    height: 900px;
+    width: 25%;
+    background-color: rgb(10 12 15);
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    border-radius: 5px;
-}
-
-#popup .popup-content {
-    text-align: center;
-}
-
-#popup button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#popup button:hover {
-    background-color: #0056b3;
+    float: right;
 }
