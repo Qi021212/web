@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import domain.User;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "registerFormServlet",urlPatterns = {"/registerForm"})
 public class RegisterFormServlet extends HttpServlet {

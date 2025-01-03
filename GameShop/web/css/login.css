@@ -19,17 +19,34 @@ p {
     overflow: hidden;
     background: #1b2838;
     padding: 50px 0;
+
 }
+
 
 .user-content{
     position: relative;
     margin: 0 auto;
     background: #171d25;
     width: 400px;
+    align-items: center;
+    justify-content: start;
+    padding: 10px 20px; /* 内边距 */
+    border-radius: 15px; /* 设置圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 边框颜色（透明） */
+}
+
+.feedback {
+    color: #fff;
+    background-image: url('../images/warning.png');
+    background-repeat: no-repeat;
+    background-position: 2px 14px;
+    padding: 10px 0 0 22px;
 }
 
 .user-title{
     position: relative;
+    text-align: left;
     font-family:inherit;
     font-style: italic;
     padding: 10px 0;
@@ -38,7 +55,31 @@ p {
     font-weight: bold;
     color: #fff;
     border-bottom: 1px solid #999;
+    display: flex; align-items: center;
 }
+
+.user-title-logo{
+    height:  75px;
+}
+
+.captcha-container {
+    display: flex; /* 启用 Flexbox 布局 */
+    align-items: center; /* 垂直居中 */
+    gap: 10px; /* 输入框和图片之间的间距 */
+}
+
+.captcha-input {
+    height: 20px; /* 设置输入框的高度 */
+    padding: 5px; /* 输入框内边距 */
+    font-size: 16px; /* 字体大小 */
+    flex: 1; /* 输入框自适应宽度 */
+}
+
+.captcha-image {
+    width: 100px; /* 验证码图片宽度 */
+    height: auto; /* 保持图片宽高比 */
+}
+
 
 .login-tip{
 
@@ -50,6 +91,7 @@ p {
 .user-form-item{
     position: relative;
     margin-top: 20px;
+
 }
 .user-form-input{
     padding: 10px 0 10px 50px;
@@ -71,10 +113,9 @@ p {
     color: #d3d3d3;
     text-align: center;
     border-right: 1px solid #bdbdbd;
+
 }
-.user-form-capt{
-    height: 20px;
-}
+
 .user-form-submit{
     width: 200px;
     font-size: 20px;
@@ -86,6 +127,12 @@ p {
     border: none;
     background: #215496;
     color: #ffffff;
+    align-items: center;
+    justify-content: start;
+    padding: 0px 20px; /* 内边距 */
+    border-radius: 15px; /* 设置圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 边框颜色（透明） */
 }
 
 .user-form-link{

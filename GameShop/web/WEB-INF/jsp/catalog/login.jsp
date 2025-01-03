@@ -14,7 +14,10 @@
 <body>
 <div class="w">
     <div class="user-content">
-        <div class="user-title">GameShop_Login</div>
+        <div class="user-title">
+            <img src="./images/logo.png" alt="logo" id="logo"  class="user-title-logo">
+            GameShop_Login
+        </div>
         <form action="login" class="user-form" method="post">
             <p class="login-tip">用账户名称登录</p>
             <div class="user-form-item">
@@ -23,16 +26,18 @@
                 </label>
                 <input type="text" class="user-form-input" name="username" id="username" placeholder="请输入用户名" autocomplete="off">
             </div>
+
             <div class="user-form-item">
                 <label for="password" class="user-form-label">
                     <i class="fa-solid fa-lock"></i>
                 </label>
                 <input type="password" class="user-form-input" name="password" id="password" placeholder="请输入密码" autocomplete="off">
             </div>
+
             <br>
-            <div>
-                <input type="text" class="user-form-capt" name="captcha_input" placeholder="请输入左侧图片中验证码" />
-                <img src="captcha" alt="验证码" onclick="this.src='captcha?'+Math.random()" />
+            <div class="captcha-container">
+                <input type="text" class="captcha-input" name="captcha_input" placeholder="请输入左侧图片中验证码" />
+                <img src="captcha" alt="验证码" class="captcha-image" onclick="this.src='captcha?'+Math.random()" />
             </div>
 <%--            <div>--%>
 <%--                <label for="username" class="user-form-label">--%>
@@ -42,8 +47,8 @@
 <%--                <img src="captcha" alt="验证码" onclick="this.src='captcha?'+Math.random()" />--%>
 <%--            </div>--%>
             <c:if test="${requestScope.loginMsg != null}">
-                <div class="user-form-error">
-                    <i class="fa-solid fa-circle-exclamation error-icon"></i>
+                <div id="feedback" class="feedback">
+<%--                    <i class="fa-solid fa-circle-exclamation error-icon"></i>--%>
                     <p class="error-msg">${requestScope.loginMsg}</p>
                 </div>
             </c:if>

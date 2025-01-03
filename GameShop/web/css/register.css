@@ -26,6 +26,12 @@ p {
     margin: 0 auto;
     background: #171d25;
     width: 400px;
+    align-items: center;
+    justify-content: start;
+    padding: 10px 20px; /* 内边距 */
+    border-radius: 15px; /* 设置圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 边框颜色（透明） */
 }
 
 .user-title{
@@ -39,6 +45,11 @@ p {
     font-weight: bold;
     color: #fff;
     border-bottom: 1px solid #999;
+    display: flex; align-items: center;
+}
+
+.user-title-logo{
+    height:  75px;
 }
 
 .login-tip{
@@ -46,6 +57,14 @@ p {
 }
 .user-form{
     padding:20px;
+}
+
+.feedback {
+    color: #fff;
+    background-image: url('../images/warning.png');
+    background-repeat: no-repeat;
+    background-position: 2px 14px;
+    padding: 10px 0 0 22px;
 }
 
 .user-form-item{
@@ -74,7 +93,7 @@ p {
     border-right: 1px solid #bdbdbd;
 }
 
-.user-form-sumbit{
+.user-form-submit{
     width: 200px;
     font-size: 20px;
     margin-left: 80px;
@@ -85,6 +104,12 @@ p {
     border: none;
     background: #215496;
     color: #ffffff;
+    align-items: center;
+    justify-content: start;
+    padding: 0px 20px; /* 内边距 */
+    border-radius: 15px; /* 设置圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 边框颜色（透明） */
 }
 
 .user-form-link{

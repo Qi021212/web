@@ -10,6 +10,7 @@ import domain.User;
 import service.UserService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "registerServlet",urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
@@ -38,9 +39,13 @@ public class RegisterServlet extends HttpServlet {
             HttpSession session = req.getSession();
 
             Boolean isLogin = (Boolean)session.getAttribute("isLogin");
+            //通过流输出一个判定注册成功的流
+            resp.setContentType("text/plain;charset=UTF-8");
+            PrintWriter out = resp.getWriter();
             UserService userService = new UserService();
             if(userService.addUser(registerUser)){
                resp.sendRedirect("loginForm");
+
             }else{
                 req.setAttribute("registerMsg",userService.getMsg());
                 req.getRequestDispatcher("registerForm").forward(req,resp);

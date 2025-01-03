@@ -7,7 +7,7 @@
         <div>
             <table class="userinfo">
                 <tr>
-                    <td rowspan="3"><img src="images/img.png" alt=""></td>
+                    <td rowspan="3"><img src="images/img.png" alt="head portrait"></td>
                     <td>ID:</td>
                     <td><c:out value="${sessionScope.userInfo.id}" /></td>
                 </tr>
