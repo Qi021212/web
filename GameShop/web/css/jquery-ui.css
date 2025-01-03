@@ -869,11 +869,20 @@ body .ui-tooltip {
 }
 .ui-widget input,
 .ui-widget select,
-.ui-widget textarea,
-.ui-widget button {
+.ui-widget textarea{
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 1em;
 }
+
+.ui-widget button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	margin: 10px 0px 0px 0px;
+	background-color: #6ca520;
+	color: white;
+	padding: 6px 13px;
+}
+
 .ui-widget.ui-widget-content {
 	border: 1px solid #c5c5c5;
 }

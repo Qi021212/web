@@ -20,16 +20,16 @@
             </tr>
             <tr class="add">
                 <td class="add">¥ ${item.price}</td>
-                <td>
-                    <form action="addToCart" method="POST">
-                        <input type="hidden" name="itemId" value="${item.id}" />
-                        <input type="hidden" name="price" value="${item.price}" />
-                        <input type="submit" value="添加到购物车" class="addBtn"/>
-                    </form>
+                <td class="add">
+                    <button class="addBtn" data-item-id="${item.id}" data-price="${item.price}" data-name="${item.name}">
+                        添加到购物车
+                    </button>
                 </td>
             </tr>
         </c:forEach>
     </table>
 </div>
+<script src="js/main.js"></script>
+
 
 <%@ include file="../common/bottom.jsp"%>

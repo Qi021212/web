@@ -1,12 +1,12 @@
-html {
-    height:100%;
-}
-/* 图片的父元素是body，图片作为背景图，需要占满整个浏览器窗口，所以图片要填满整个父元素 */
-body {
-    /* 设置body占满整个父元素 */
-    height:100%;
-    transition: all .3s ease-out;
-}
+/*html {*/
+/*    height:100%;*/
+/*}*/
+/*!* 图片的父元素是body，图片作为背景图，需要占满整个浏览器窗口，所以图片要填满整个父元素 *!*/
+/*body {*/
+/*    !* 设置body占满整个父元素 *!*/
+/*    height:100%;*/
+/*    transition: all .3s ease-out;*/
+/*}*/
 
 /* 页面的主题部分，也称为"版心" */
 .container{
@@ -22,10 +22,67 @@ body {
     padding: 10px;
 }
 .container-right{
-    height: 900px;
+    /*height: 900px;*/
+    height: calc(100% - 335px);
     width: 25%;
     background-color: rgb(10 12 15);
     border-radius: 10px;
     padding: 20px;
     float: right;
+}
+
+
+table.cart{
+    width: 780px;
+    color: white;
+    border-collapse: collapse;
+    margin-left: 10px;
+}
+h2.cart{
+    margin-top:100px;
+    margin-left: 10px;
+}
+.cart thead{
+    font-size: 20px;
+    color: #a5bec3;
+}
+.cart tbody td{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+h3.cart{
+    margin-left: 10px;
+    font-size: 20px;
+}
+h3.total{
+    margin: 5px 20px 5px 60px;
+    font-size: 20px;
+    text-align: right;
+    width: 710px;
+}
+.cartDelete{
+    font-size: 15px;
+    background-color: #f3f3f3;
+    padding: 2px;
+}
+.btn-success{
+    background-color: #6ca520;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.btn-submit{
+    background-color: #6ca520;
+    color: white;
+    font-size: 19px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 5px 20px 5px 651px;
+    width: 120px;
+    height: 50px;
 }

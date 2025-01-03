@@ -8,7 +8,7 @@
         <li class="item"><a href=""><img src="images/001.png" alt="双人成行"></a></li>
         <li class="item"><a href=""><img src="images/013.png" alt="纸嫁衣6千秋魇"></a></li>
         <li class="item"><a href=""><img src="images/006.png" alt="Overcooked!2"></a></li>
-        <li class="item"><a href=""><img src="images/004.png" alt="黑神话·悟空"></a></li>
+        <li class="item"><a href=""><img src="images/007.png" alt="CLANNAD"></a></li>
         <li class="item"><a href=""><img src="images/005.png" alt="LIAR'S BAR"></a></li>
         <li class="item"><a href=""><img src="images/031.png" alt="卡通农场"></a></li>
     </ul>
@@ -53,14 +53,6 @@
         <c:forEach var="item" items="${sessionScope.itemList}">
             <tr class="itemList">
                 <td class="img"><a href="itemInformation?itemPicture=${item.picture}"><img src="${item.picture}" alt="${item.name}" class="item-image"></a></td>
-<%--                <td class="floating-window" id="">--%>
-<%--                    <div class="floating-window-content">--%>
-<%--                        <h3 class="floating-window-name">${item.name}</h3>--%>
-<%--                        <p class="floating-window-description">${item.description}</p>--%>
-<%--                        <p class="floating-window-type">${item.type}</p>--%>
-<%--                    </div>--%>
-<%--                    <div class="floating-window-mask"></div>--%>
-<%--                </td>--%>
                 <td class="name&type">${item.name}<br/><br/>${item.type}</td>
                 <td class="price">¥ ${item.price}</td>
                 <td class="add">
@@ -76,36 +68,10 @@
 <div class="floating-window">
 
 </div>
-
 <script src="js/floatingWindow.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.addBtn').click(function () {
-            const itemId = $(this).data('item-id');
-            const price = $(this).data('price');
-            const itemName = $(this).data('name');
 
-            // 弹出确认框
-            const confirmAdd = confirm(`是否添加 ${itemName} 到购物车？`);
-            if (confirmAdd) {
-                // 使用 jQuery AJAX 发送请求
-                $.ajax({
-                    url: 'addToCart',
-                    type: 'POST',
-                    data: {
-                        itemId: itemId,
-                        price: price
-                    },
-                    success: function (response) {
-                        alert("添加成功！");
-                    },
-                    error: function (xhr, status, error) {
-                        alert('添加失败，请重试。');
-                    }
-                });
-            }
-        });
-    });
-</script>
+
+<script src="js/main.js"></script>
+
 
 <%@ include file="../common/bottom.jsp"%>
