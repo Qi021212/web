@@ -154,10 +154,6 @@ function submitCinfiredOrder() {
             // 解析返回的订单数据
             var response = JSON.parse(xhr.responseText);
 
-            // // 显示订单详情
-            // document.getElementById("orderDetails").innerHTML = generateOrderDetails(response.selectedItems);
-            // document.getElementById("totalAmount").innerText = "¥ " + response.totalAmount.toFixed(2);
-
             // 跳转到订单成功页面
             alert("订单提交成功！");
 

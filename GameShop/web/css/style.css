@@ -308,26 +308,7 @@ table.userinfo{
 }
 
 
-/*order_list*/
-/*订单*/
-h2.order{
-    margin-top:100px;
-    margin-left: 10px;
-}
-.order th{
-    font-size: 20px;
-    color: #a5bec3;
-    margin-left: 10px;
-}
-.order td{
-    text-align: center;
-    padding:10px 10px;
-    text-decoration: none;
-}
-.container table{
-    border-bottom: 1px solid #ffffff;
-    margin-left: 10px;
-}
+
 
 
 /*action*/

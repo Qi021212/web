@@ -16,7 +16,6 @@
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/cart.js"></script>
 
-
 </head>
 <body>
 <div class="container">

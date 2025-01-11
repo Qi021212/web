@@ -1,13 +1,3 @@
-/*html {*/
-/*    height:100%;*/
-/*}*/
-/*!* 图片的父元素是body，图片作为背景图，需要占满整个浏览器窗口，所以图片要填满整个父元素 *!*/
-/*body {*/
-/*    !* 设置body占满整个父元素 *!*/
-/*    height:100%;*/
-/*    transition: all .3s ease-out;*/
-/*}*/
-
 /* 页面的主题部分，也称为"版心" */
 .container{
     width: 1160px;
@@ -23,7 +13,7 @@
 }
 .container-right{
     /*height: 900px;*/
-    height: calc(100% - 335px);
+    height: calc(100% - 240px);
     width: 25%;
     background-color: rgb(10 12 15);
     border-radius: 10px;

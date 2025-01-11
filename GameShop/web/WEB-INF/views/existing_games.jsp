@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="existing-games">
-    <h2>已有游戏</h2>
+    <h3>已有游戏</h3>
     <ul>
         <c:forEach var="game" items="${existingGames}">
             <li>${game.itemName}</li>
