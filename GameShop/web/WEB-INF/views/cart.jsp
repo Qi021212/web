@@ -77,15 +77,15 @@
             </c:forEach>
             <div id="tab1" >
               <div>
-                <label>姓名:</label>
+                <label class="label1">姓名:</label>
                 <input type="text" name="name" value="${user.username}" required>
               </div>
               <div>
-                <label>电话:</label>
+                <label class="label1">电话:</label>
                 <input type="text" name="phone" value="${user.phone}" required>
               </div>
               <div>
-                <label>邮箱:</label>
+                <label class="label1">邮箱:</label>
                 <input type="text" name="email" value="${user.email}" required>
               </div>
               <button type="button" onclick="nextTab()">下一步</button>

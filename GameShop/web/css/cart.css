@@ -16,14 +16,14 @@
     overflow: hidden;
 }
 .container-left{
-    height: 100%;
+    /*height: 100%;*/
     width: 60%;
     float: left;
     padding: 10px;
 }
 .container-right{
     /*height: 900px;*/
-    height: calc(100% - 335px);
+    height: calc(100% - 280px);
     width: 25%;
     background-color: rgb(10 12 15);
     border-radius: 10px;
@@ -85,4 +85,7 @@ h3.total{
     margin: 5px 20px 5px 651px;
     width: 120px;
     height: 50px;
+}
+.label1{
+    text-align: left;
 }
