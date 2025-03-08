@@ -1,4 +1,4 @@
-<%@ include file="../jsp/common/top.jsp"%>
+<%@ include file="../common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -91,10 +91,7 @@
             </div>
             <div id="tab2" >
               <div id="orderDetails"></div>
-
               <div id="submitAmount"></div>
-
-
               <label>
                 支付方式:
                 <select id="paytype">
@@ -103,7 +100,6 @@
                 </select>
               </label>
               <button type="button" onclick="submitCinfiredOrder() ">确认订单</button>
-
             </div>
           </form>
         </div>

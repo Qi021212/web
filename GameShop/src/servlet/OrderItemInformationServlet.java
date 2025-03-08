@@ -19,7 +19,7 @@ public class OrderItemInformationServlet extends HttpServlet {
             int itemId = Integer.parseInt(itemIdParam);
             Item item = itemService.getItemById(itemId);
             request.setAttribute("item", item);
-            request.getRequestDispatcher("/WEB-INF/views/orderItemInformation.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/views/orderItemInformation.jsp").forward(request, response);
         } else {
             response.sendRedirect("order_list");  // 如果 itemId 不存在，重定向到订单列表
         }

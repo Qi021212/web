@@ -165,12 +165,5 @@ function submitCinfiredOrder() {
     xhr.send(params);
 }
 
-// 生成订单详情内容
-function generateOrderDetails(selectedItems) {
-    var details = '';
-    selectedItems.forEach(function(selectedItem) {
-        details += `<p>商品名称: ${selectedItem.name} 价格: ¥ ${selectedItem.price}</p>`;
-    });
-    return details;
-}
+
 

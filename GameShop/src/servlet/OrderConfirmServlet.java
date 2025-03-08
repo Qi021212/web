@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
     CartService cartService = new CartService();
-    private UserService userService = new UserService(); // 假设你有 UserService 来获取用户信息
+    private UserService userService = new UserService();
     private CartDAOImpl cartDAO = new CartDAOImpl();
     private ExistingGameService existingGameService = new ExistingGameService();
 

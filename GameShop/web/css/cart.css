@@ -21,7 +21,6 @@
     float: right;
 }
 
-
 table.cart{
     width: 780px;
     color: white;
@@ -65,7 +64,6 @@ h3.total{
     margin-left: 10px;
     margin-top: 10px;
 }
-
 .btn-submit{
     background-color: #6ca520;
     color: white;

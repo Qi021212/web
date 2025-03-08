@@ -1,4 +1,4 @@
-<%@ include file="../jsp/common/top.jsp"%>
+<%@ include file="../common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -15,7 +15,7 @@
 	<div class="order-container">
 		<div class="order-container-left">
 			<!-- 引入已有游戏列表 -->
-			<jsp:include page="/WEB-INF/views/existing_games.jsp">
+			<jsp:include page="/WEB-INF/jsp/views/existing_games.jsp">
 				<jsp:param name="existingGames" value="${existingGames}" />
 			</jsp:include>
 		</div>

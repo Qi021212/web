@@ -1,4 +1,4 @@
-<%@ include file="../jsp/common/top.jsp"%>
+<%@ include file="../common/top.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -24,4 +24,4 @@
 </div>
 
 
-<%@ include file="../jsp/common/bottom.jsp"%>
+<%@ include file="../common/bottom.jsp"%>

@@ -50,6 +50,6 @@ public class OrderListServlet extends HttpServlet {
         List<ExistingGame> existingGames = existingGameService.getExistingGames(user.getId());
         request.setAttribute("existingGames", existingGames);
 
-        request.getRequestDispatcher("/WEB-INF/views/order_list.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/views/order_list.jsp").forward(request, response);
     }
 }

@@ -1,8 +1,6 @@
 package servlet;
 
 import domain.Cart;
-import domain.Order;
-import domain.OrderItem;
 import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import persistence.impl.CartDAOImpl;
 import service.CartService;
-import service.OrderService;
 import service.UserService;
 import com.alibaba.fastjson.JSONObject;
 
@@ -158,7 +155,7 @@ public class CartServlet extends HttpServlet {
 
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("totalAmount", totalAmount);
-        request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/views/cart.jsp").forward(request, response);
     }
 }
 
